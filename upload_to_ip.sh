@@ -19,6 +19,6 @@ then
 	usage
 fi
 
-echo Uploading to IP $1
-scp base_gigabot.cfg pi@$1:~/printer.cfg  
-scp -r gigabot_config pi@$1:~/
+echo Uploading to IP 192.168.1.$1
+scp base_gigabot.cfg pi@192.168.1.$1:~/printer.cfg  
+scp -r {./gigabot_config,./moonraker.conf} pi@192.168.1.$1:~/
