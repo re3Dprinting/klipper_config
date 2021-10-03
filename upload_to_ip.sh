@@ -20,5 +20,4 @@ then
 fi
 
 echo Uploading to IP 192.168.1.$1
-scp base_gigabot.cfg pi@192.168.1.$1:~/printer.cfg  
-scp -r {./gigabot_config,./moonraker.conf,./get_serial.sh} pi@192.168.1.$1:~/
+scp -r {./*.cfg,./*.conf,./get_serial.sh} pi@192.168.1.$1:~/klipper_config/
