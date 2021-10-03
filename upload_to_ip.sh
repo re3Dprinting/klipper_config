@@ -9,7 +9,7 @@ Upload klipper config files to RaspberryPi
 Available options:
 
 -h, --help      Print this help and exit
-ip		IP of machine to upload to
+ip		Last octet of the machine to upload to. Assumes 192.168.1.XX
 EOF
   exit
 }
@@ -21,4 +21,4 @@ fi
 
 echo Uploading to IP 192.168.1.$1
 scp base_gigabot.cfg pi@192.168.1.$1:~/printer.cfg  
-scp -r {./gigabot_config,./moonraker.conf} pi@192.168.1.$1:~/
+scp -r {./gigabot_config,./moonraker.conf,./get_serial.sh} pi@192.168.1.$1:~/
