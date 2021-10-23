@@ -49,5 +49,7 @@ cat "$REPLACE_FILE" | sed "s/$x_str/$x_size/g" \
 
 echo Uploading to IP 192.168.1.$1
 scp -r {./*.cfg,./*.conf,./get_serial.sh} pi@192.168.1.$1:~/klipper_config/
-
 rm $NEW_FILE
+
+ssh pi@192.168.1.$1 "./klipper_config/get_serial.sh"
+
