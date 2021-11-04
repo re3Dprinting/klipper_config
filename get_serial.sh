@@ -1,5 +1,6 @@
 #!/bin/bash
 
+PWD="$(cd "$(dirname "$0")" && pwd)"
 serial=$(ls /dev/serial/by-id/* 2>/dev/null)
 if [ $? -ne 0 ] 
 then
@@ -8,4 +9,4 @@ then
 fi
 
 GIGABOT_SERIAL_VAR='{gigabot_serial}'
-sed -i "s/$GIGABOT_SERIAL_VAR/serial/g" gigabot_mcu.cfg
+sed -ie "s|$GIGABOT_SERIAL_VAR|$serial|g" $PWD/gigabot_mcu.cfg
