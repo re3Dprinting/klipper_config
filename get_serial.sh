@@ -7,7 +7,5 @@ then
     exit 1
 fi
 
-prefix=$'[mcu]\nserial: '
-echo "$prefix"$serial > gigabot_serial.cfg
-
-# echo $serial
+GIGABOT_SERIAL_VAR='{gigabot_serial}'
+sed -i "s/$GIGABOT_SERIAL_VAR/serial/g" gigabot_mcu.cfg
