@@ -10,7 +10,7 @@ Upload klipper config files to RaspberryPi
 Available options:
 
 -h, --help      Print this help and exit
-ip		Last octet of the machine to upload to. Assumes 192.168.1.XX
+ip		Last octet of the machine to upload to. Assumes change FIRST_THREE_OCTETS to change ip octet.
 EOF
   exit
 }
@@ -20,6 +20,7 @@ then
 	usage
 fi
 
+FIRST_THREE_OCTETS="10.1.10."
 REPLACE_FILE="gigabot_steppers_base.cfg"
 NEW_FILE="gigabot_steppers.cfg"
 x_str="{x_max_position}"
@@ -47,9 +48,9 @@ cat "$REPLACE_FILE" | sed "s/$x_str/$x_size/g" \
       | sed "s/$z_str/$z_size/g" \
       > "$NEW_FILE"
 
-echo Uploading to IP 192.168.1.$1
-scp -r {./*.cfg,./*.conf,./get_serial.sh} pi@192.168.1.$1:~/klipper_config/
+echo Uploading to IP $FIRST_THREE_OCTETS$1
+scp -r {./*.cfg,./*.conf,./get_serial.sh} pi@$FIRST_THREE_OCTETS$1:~/klipper_config/
 rm $NEW_FILE
 
-ssh pi@192.168.1.$1 "./klipper_config/get_serial.sh"
+ssh pi@$FIRST_THREE_OCTETS$1 "./klipper_config/get_serial.sh"
 
