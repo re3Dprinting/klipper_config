@@ -9,4 +9,4 @@ then
 fi
 
 GIGABOT_SERIAL_VAR='{gigabot_serial}'
-sed -ie "s|$GIGABOT_SERIAL_VAR|$serial|g" $PWD/gigabot_mcu.cfg
+sed -i --expression "s|$GIGABOT_SERIAL_VAR|$serial|g" $PWD/gigabot_mcu.cfg
