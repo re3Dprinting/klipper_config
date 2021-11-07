@@ -21,32 +21,10 @@ then
 fi
 
 FIRST_THREE_OCTETS="10.1.10."
-REPLACE_FILE="gigabot_steppers_base.cfg"
+
 NEW_FILE="gigabot_steppers.cfg"
-x_str="{x_max_position}"
-y_str="{y_max_position}"
-z_str="{z_max_position}"
-
 read -p "Enter Gigabot Size: (1)Regular (2)XLT (3)Terabot (4)Exabot: " model; echo
-case $model in
-  1)
-    x_size="590"; y_size="610"; z_size="609";;
-  2)
-    x_size="590"; y_size="760"; z_size="900";;
-  3)
-    x_size="910"; y_size="910"; z_size="910";;
-  4)
-    echo Exabot current unavailable.; exit 1;;
-  *)
-    usage; exit 1;;
-esac
-echo Setting bed size to X:$x_size Y:$y_size Z:$z_size
-echo
-
-cat "$REPLACE_FILE" | sed "s/$x_str/$x_size/g" \
-      | sed "s/$y_str/$y_size/g" \
-      | sed "s/$z_str/$z_size/g" \
-      > "$NEW_FILE"
+./get_bedsize.sh $model
 
 echo Uploading to IP $FIRST_THREE_OCTETS$1
 scp -r {./*.cfg,./*.conf,./get_serial.sh} pi@$FIRST_THREE_OCTETS$1:~/klipper_config/
