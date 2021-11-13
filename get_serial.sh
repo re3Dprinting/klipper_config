@@ -8,5 +8,6 @@ then
     exit 1
 fi
 
-GIGABOT_SERIAL_VAR='{gigabot_serial}'
-sed -i --expression "s|$GIGABOT_SERIAL_VAR|$serial|g" $PWD/gigabot_mcu.cfg
+SERIAL_LINE='serial: .*'
+NEW_SERIAL_LINE="serial: $serial"
+sed -i --expression "s|$SERIAL_LINE|$NEW_SERIAL_LINE|g" $PWD/gigabot_mcu.cfg
