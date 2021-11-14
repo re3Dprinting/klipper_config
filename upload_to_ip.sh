@@ -32,13 +32,11 @@ fi
 
 FIRST_THREE_OCTETS="10.1.10."
 
-STEPPER_FILE="gigabot_steppers.cfg"
 read -p "Enter Gigabot Size: (1)Regular (2)XLT (3)Terabot (4)Exabot: " model; echo
 ./get_bedsize.sh $model
 
 echo Uploading to IP $FIRST_THREE_OCTETS$1
-scp -r {./*.cfg,./*.conf,./get_serial.sh} pi@$FIRST_THREE_OCTETS$1:~/klipper_config/
-rm $STEPPER_FILE
+scp -r {./*.cfg,./*.conf,./get_serial.sh,./*.cfg.tmpl} pi@$FIRST_THREE_OCTETS$1:~/klipper_config/
 
 if [[ $DEV == "true" ]]
 then

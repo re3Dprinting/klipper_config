@@ -19,8 +19,8 @@ then
 fi
 
 
-REPLACE_FILE="gigabot_steppers_base.cfg"
-NEW_FILE="gigabot_steppers.cfg"
+REPLACE_FILE="gigabot_bedsize.cfg.tmpl"
+NEW_FILE="gigabot_bedsize.cfg"
 x_str="{x_max_position}"
 y_str="{y_max_position}"
 z_str="{z_max_position}"

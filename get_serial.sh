@@ -10,4 +10,4 @@ fi
 
 SERIAL_LINE='serial: .*'
 NEW_SERIAL_LINE="serial: $serial"
-sed -i --expression "s|$SERIAL_LINE|$NEW_SERIAL_LINE|g" $PWD/gigabot_mcu.cfg
+sed --expression "s|$SERIAL_LINE|$NEW_SERIAL_LINE|g" $PWD/gigabot_mcu.cfg.tmpl > $PWD/gigabot_mcu.cfg
