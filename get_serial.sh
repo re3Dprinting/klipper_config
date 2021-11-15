@@ -6,6 +6,7 @@ if [[ -n "$1" && $1 == "-uart" ]]
 then
     echo Using UART for com
     serial="/dev/ttyAMA0"
+    # Need to append "restart_method: command" as well.
 else
     serial=$(ls /dev/serial/by-id/* 2>/dev/null)
     if [ $? -ne 0 ] 

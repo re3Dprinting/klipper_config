@@ -19,14 +19,6 @@ fi
 
 ./get_bedsize.sh $1
 
-
-if [[ -n "$2" && $2 == "-uart" ]]
-then
-    ./get_serial.sh -uart
-else
-    ./get_serial.sh
-fi
-
 if [[ -n "$2" && $2 == "-d" ]]
 then
     echo Setting up for Development Pi
@@ -35,3 +27,9 @@ else
     touch gigabot_dev.cfg
 fi
 
+if [[ -n "$2" && $2 == "-uart" ]]
+then
+    ./get_serial.sh -uart
+else
+    ./get_serial.sh
+fi
