@@ -4,9 +4,10 @@ set -e
 
 usage() {
   cat << EOF # remove the space between << and EOF, this is due to web plugin issue
-Usage: $(basename "${BASH_SOURCE[0]}") [bedsize] [-d]
+Usage: $(basename "${BASH_SOURCE[0]}") [bedsize] [-d] [-uart]
 
 -d         Generate a gigabot_dev.cfg file for re:3D's SDK
+-uart      Use uart instead of USB for communication
 EOF
   exit
 }
@@ -17,7 +18,14 @@ then
 fi
 
 ./get_bedsize.sh $1
-./get_serial.sh
+
+
+if [[ -n "$2" && $2 == "-uart" ]]
+then
+    ./get_serial.sh -uart
+else
+    ./get_serial.sh
+fi
 
 if [[ -n "$2" && $2 == "-d" ]]
 then
@@ -26,3 +34,4 @@ then
 else
     touch gigabot_dev.cfg
 fi
+

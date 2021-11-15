@@ -1,11 +1,18 @@
 #!/bin/bash
 
 PWD="$(cd "$(dirname "$0")" && pwd)"
-serial=$(ls /dev/serial/by-id/* 2>/dev/null)
-if [ $? -ne 0 ] 
+
+if [[ -n "$1" && $1 == "-uart" ]]
 then
-    echo "Please plug in Gigabot USB"
-    exit 1
+    echo Using UART for com
+    serial="/dev/ttyAMA0"
+else
+    serial=$(ls /dev/serial/by-id/* 2>/dev/null)
+    if [ $? -ne 0 ] 
+    then
+        echo "Please plug in Gigabot USB"
+        exit 1
+    fi
 fi
 
 SERIAL_LINE='serial: .*'
