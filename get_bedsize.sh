@@ -19,7 +19,7 @@ then
 fi
 
 
-REPLACE_FILE="gigabot_bedsize.cfg.tmpl"
+REPLACE_FILE="templates/gigabot_bedsize.cfg.tmpl"
 NEW_FILE="gigabot_bedsize.cfg"
 x_str="{x_max_position}"
 y_str="{y_max_position}"

@@ -18,13 +18,14 @@ then
 fi
 
 PWD="$(cd "$(dirname "$0")" && pwd)"
+TMPL_PWD=$PWD/templates
 
 $PWD/get_bedsize.sh $1
 
 if [[ -n "$2" && $2 == "-d" ]]
 then
     echo Setting up for Development Pi
-    cp $PWD/gigabot_dev.cfg.tmpl $PWD/gigabot_dev.cfg
+    cp $TMPL_PWD/gigabot_dev.cfg.tmpl $PWD/gigabot_dev.cfg
 else
     touch $PWD/gigabot_dev.cfg
 fi
@@ -38,5 +39,5 @@ fi
 
 if [[ ! -f $PWD/gigabot_save_variables.cfg ]]
 then
-    cp $PWD/gigabot_save_variables.cfg.tmpl $PWD/gigabot_save_variables.cfg
+    cp $TMPL_PWD/gigabot_save_variables.cfg.tmpl $PWD/gigabot_save_variables.cfg
 fi
