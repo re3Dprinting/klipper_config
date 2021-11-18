@@ -17,19 +17,26 @@ then
 	usage
 fi
 
-./get_bedsize.sh $1
+PWD="$(cd "$(dirname "$0")" && pwd)"
+
+$PWD/get_bedsize.sh $1
 
 if [[ -n "$2" && $2 == "-d" ]]
 then
     echo Setting up for Development Pi
-    cp gigabot_dev.cfg.tmpl gigabot_dev.cfg
+    cp $PWD/gigabot_dev.cfg.tmpl $PWD/gigabot_dev.cfg
 else
-    touch gigabot_dev.cfg
+    touch $PWD/gigabot_dev.cfg
 fi
 
 if [[ -n "$2" && $2 == "-uart" ]]
 then
-    ./get_serial.sh -uart
+    $PWD/get_serial.sh -uart
 else
-    ./get_serial.sh
+    $PWD/get_serial.sh
+fi
+
+if [[ ! -f $PWD/gigabot_save_variables.cfg ]]
+then
+    cp $PWD/gigabot_save_variables.cfg.tmpl $PWD/gigabot_save_variables.cfg
 fi
