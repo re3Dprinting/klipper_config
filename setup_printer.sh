@@ -27,7 +27,7 @@ then
     echo Setting up for Development Pi
     cp $TMPL_PWD/gigabot_dev.cfg.tmpl $PWD/gigabot_dev.cfg
 else
-    touch $PWD/gigabot_dev.cfg
+    echo "" > $PWD/gigabot_dev.cfg
 fi
 
 if [[ -n "$2" && $2 == "-uart" ]]
