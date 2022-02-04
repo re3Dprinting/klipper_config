@@ -41,3 +41,8 @@ if [[ ! -f $PWD/gigabot_save_variables.cfg ]]
 then
     cp $TMPL_PWD/gigabot_save_variables.cfg.tmpl $PWD/gigabot_save_variables.cfg
 fi
+
+if [[ ! -f $PWD/gigabot_standalone_config.cfg ]]
+then
+    cp $TMPL_PWD/gigabot_standalone_config.cfg.tmpl $PWD/gigabot_standalone_config.cfg
+fi
