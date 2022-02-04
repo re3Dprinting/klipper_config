@@ -19,28 +19,20 @@ then
 fi
 
 
-REPLACE_FILE="templates/gigabot_bedsize.cfg.tmpl"
-NEW_FILE="gigabot_bedsize.cfg"
-x_str="{x_max_position}"
-y_str="{y_max_position}"
-z_str="{z_max_position}"
+REPLACE_FILE=""
+NEW_FILE="bot_flavor.cfg"
 
 case $1 in
-  1)
-    x_size="590"; y_size="610"; z_size="609";;
-  2)
-    x_size="590"; y_size="760"; z_size="900";;
-  3)
-    x_size="910"; y_size="910"; z_size="910";;
-  4)
+  1) #Regular
+    REPLACE_FILE="bot_flavors/gigabot.cfg.tmpl";;
+  2) #XLT
+    REPLACE_FILE="bot_flavors/gigabotXLT.cfg.tmpl";;
+  3) #Terabot
+    REPLACE_FILE="bot_flavors/terabot.cfg.tmpl";;
+  4) #Exabot
     echo Exabot current unavailable.; exit 1;;
   *)
     usage; exit 1;;
 esac
-echo Setting bed size to X:$x_size Y:$y_size Z:$z_size
-echo
 
-cat "$REPLACE_FILE" | sed "s/$x_str/$x_size/g" \
-      | sed "s/$y_str/$y_size/g" \
-      | sed "s/$z_str/$z_size/g" \
-      > "$NEW_FILE"
+cat "$REPLACE_FILE" > "$NEW_FILE"
