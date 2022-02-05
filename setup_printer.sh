@@ -46,3 +46,5 @@ if [[ ! -f $PWD/gigabot_standalone_config.cfg ]]
 then
     cp $TMPL_PWD/gigabot_standalone_config.cfg.tmpl $PWD/gigabot_standalone_config.cfg
 fi
+
+cp $TMPL_PWD/moonraker.conf.tmpl $PWD/moonraker.conf
