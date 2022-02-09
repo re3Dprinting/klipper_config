@@ -8,9 +8,9 @@
   },
   "control": {
     "style": "cross",
-    "selectedCrossStep": 4,
+    "selectedCrossStep": 5,
     "extruder": {
-      "feedamount": 10,
+      "feedamount": 25,
       "feedrate": 2
     }
   },
@@ -410,10 +410,29 @@
             "showInStandby": true,
             "showInPrinting": true,
             "showInPause": true
+          },
+          {
+            "pos": 9,
+            "name": "PURGE_LEFT",
+            "color": "primary",
+            "showInStandby": true,
+            "showInPrinting": true,
+            "showInPause": true
+          },
+          {
+            "pos": 10,
+            "name": "PURGE_RIGHT",
+            "color": "warning",
+            "showInStandby": true,
+            "showInPrinting": true,
+            "showInPause": true
           }
         ]
       }
     }
+  },
+  "presets": {
+    "presets": {}
   },
   "remoteprinters": {
     "printers": {}
@@ -433,6 +452,9 @@
     "confirmOnEmergencyStop": false,
     "confirmOnPowerDeviceChange": false,
     "primary": "#E4DB32"
+  },
+  "webcamSettings": {
+    "boolNavi": true
   },
   "view": {
     "history": {
@@ -469,9 +491,6 @@
       "showHiddenFiles": false,
       "countPerPage": -1
     }
-  },
-  "webcamSettings": {
-    "boolNavi": true
   },
   "webcams": {
     "ce495087-8163-4e80-89dd-cca6069c299b": {
