@@ -13,7 +13,6 @@ force_logins: true
 cors_domains:
   *.local
   *.lan
-  *://app.fluidd.xyz
 
 trusted_clients:
   10.0.0.0/8
@@ -29,6 +28,7 @@ trusted_clients:
 [octoprint_compat]
 
 [update_manager]
+enable_repo_debug: True
 enable_auto_refresh: True
 enable_system_updates: True
 channel: dev
