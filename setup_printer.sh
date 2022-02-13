@@ -34,10 +34,10 @@ function add_tmpl_if_not_exist {
     tmpl_file=$1
     file_to_add=$2 
     if [[ ! -f $2 ]]; then
-        echo "$file_to_add does not exist, adding..."
-        cp $1 $2
+        echo "Adding $file_to_add..."
+        cp $tmpl_file $file_to_add
     else
-        echo "$2 exists, skipping..."
+        echo "$file_to_add exists, skipping..."
     fi
 }
 
@@ -54,7 +54,7 @@ $PWD/get_bedsize.sh $PLATFORM
 
 if [[ $DEV == "TRUE" ]]
 then
-    echo Setting up for Development Pi
+    echo "Setting up for SDK Pi..."
     cp $TMPL_PWD/gigabot_dev.cfg.tmpl $PWD/gigabot_dev.cfg
 else
     echo "" > $PWD/gigabot_dev.cfg
