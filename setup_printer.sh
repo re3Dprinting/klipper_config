@@ -4,10 +4,19 @@ set -e
 
 usage() {
   cat << EOF # remove the space between << and EOF, this is due to web plugin issue
-Usage: $(basename "${BASH_SOURCE[0]}") [bedsize] [-d] [-uart]
+Usage: $(basename "${BASH_SOURCE[0]}") -b [bedsize] [-d | -uart | -internal]
 
--d         Generate a gigabot_dev.cfg file for re:3D's SDK
--uart      Use uart instead of USB for communication
+[bedsize]
+    Enter the following to create a gigabot_stepper.cfg file for sizes:
+    1) Regular
+    2) XLT
+    3) Terabot
+    4) Exabot
+
+[-d | -uart | -internal]
+    -d         Generate a gigabot_dev.cfg file for re:3D's SDK
+    -uart      Use uart instead of USB for communication
+    -internal  Set up mainsail to point to web_beta (Prerelease)
 EOF
   exit
 }
