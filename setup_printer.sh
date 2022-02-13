@@ -65,4 +65,13 @@ $PWD/get_serial.sh $UART
 add_tmpl_if_not_exist $TMPL_PWD/gigabot_save_variables.cfg.tmpl $PWD/gigabot_save_variables.cfg
 add_tmpl_if_not_exist $TMPL_PWD/gigabot_standalone_config.cfg.tmpl $PWD/gigabot_standalone_config.cfg
 
+echo "Adding moonraker.conf file"
 cp $TMPL_PWD/moonraker.conf.tmpl $PWD/moonraker.conf
+
+if [[ $INTERNAL == "TRUE" ]]
+then
+    echo "Setting up klipper, moonraker to develop branch, mainsail to web_beta"
+    cd $HOME/klipper && git checkout develop
+    cd $HOME/moonraker && git checkout develop
+    sed -i 's/type: web/type: web_beta/g' $PWD/moonraker.cfg
+fi
