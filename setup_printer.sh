@@ -27,7 +27,19 @@ then
 fi
 
 PWD="$(cd "$(dirname "$0")" && pwd)"
+HOME=$PWD/..
 TMPL_PWD=$PWD/templates
+
+function add_tmpl_if_not_exist {
+    tmpl_file=$1
+    file_to_add=$2 
+    if [[ ! -f $2 ]]; then
+        echo "$file_to_add does not exist, adding..."
+        cp $1 $2
+    else
+        echo "$2 exists, skipping..."
+    fi
+}
 
 $PWD/get_bedsize.sh $1
 
@@ -46,14 +58,7 @@ else
     $PWD/get_serial.sh
 fi
 
-if [[ ! -f $PWD/gigabot_save_variables.cfg ]]
-then
-    cp $TMPL_PWD/gigabot_save_variables.cfg.tmpl $PWD/gigabot_save_variables.cfg
-fi
-
-if [[ ! -f $PWD/gigabot_standalone_config.cfg ]]
-then
-    cp $TMPL_PWD/gigabot_standalone_config.cfg.tmpl $PWD/gigabot_standalone_config.cfg
-fi
+add_tmpl_if_not_exist $TMPL_PWD/gigabot_save_variables.cfg.tmpl $PWD/gigabot_save_variables.cfg
+add_tmpl_if_not_exist $TMPL_PWD/gigabot_standalone_config.cfg.tmpl $PWD/gigabot_standalone_config.cfg
 
 cp $TMPL_PWD/moonraker.conf.tmpl $PWD/moonraker.conf
