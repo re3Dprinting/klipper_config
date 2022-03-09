@@ -1,18 +1,16 @@
 {
-  "general": {
-    "printername": "Gigabot"
-  },
   "console": {
     "direction": "shell",
     "entryStyle": "compact"
   },
   "control": {
     "style": "cross",
-    "selectedCrossStep": 4,
+    "selectedCrossStep": 5,
     "extruder": {
-      "feedamount": 10,
-      "feedrate": 2
-    }
+      "feedamount": 25,
+      "feedrate": 5
+    },
+    "reverseZ": true
   },
   "dashboard": {
     "widescreenLayout3": [
@@ -54,10 +52,6 @@
       },
       {
         "name": "macrogroup_1707e1ff-31fd-4f91-8d18-302750bbe5fd",
-        "visible": true
-      },
-      {
-        "name": "macrogroup_ed6df0b8-6ead-4406-9785-cd7e830e66d5",
         "visible": true
       },
       {
@@ -105,10 +99,6 @@
         "visible": true
       },
       {
-        "name": "macrogroup_ed6df0b8-6ead-4406-9785-cd7e830e66d5",
-        "visible": true
-      },
-      {
         "name": "machine-settings",
         "visible": true
       }
@@ -128,10 +118,6 @@
       },
       {
         "name": "printsettings",
-        "visible": true
-      },
-      {
-        "name": "macrogroup_ed6df0b8-6ead-4406-9785-cd7e830e66d5",
         "visible": true
       },
       {
@@ -195,17 +181,17 @@
         "visible": false
       },
       {
-        "name": "macrogroup_ed6df0b8-6ead-4406-9785-cd7e830e66d5",
+        "name": "macrogroup_34e0f282-7ad7-4ec2-b775-9b5ab65dd270",
         "visible": true
       },
       {
-        "name": "macrogroup_34e0f282-7ad7-4ec2-b775-9b5ab65dd270",
+        "name": "macrogroup_1707e1ff-31fd-4f91-8d18-302750bbe5fd",
         "visible": true
       }
     ],
     "nonExpandPanels": [
-      "printsettings-panel",
-      "webcam-panel"
+      "webcam-panel",
+      "pressure-advance-settings-subpanel"
     ]
   },
   "gcodefiles": {
@@ -232,7 +218,7 @@
     "mode": "expert",
     "macrogroups": {
       "34e0f282-7ad7-4ec2-b775-9b5ab65dd270": {
-        "name": "Preheat",
+        "name": "Preheat Macros",
         "color": "custom",
         "colorCustom": "#64439B",
         "showInStandby": true,
@@ -241,7 +227,7 @@
         "macros": [
           {
             "pos": 1,
-            "name": "PLA_E0",
+            "name": "PET_HEATERS",
             "color": "primary",
             "showInStandby": true,
             "showInPrinting": true,
@@ -249,7 +235,7 @@
           },
           {
             "pos": 2,
-            "name": "PLA_E1",
+            "name": "PET_BED",
             "color": "primary",
             "showInStandby": true,
             "showInPrinting": true,
@@ -257,7 +243,7 @@
           },
           {
             "pos": 3,
-            "name": "PLA_BED",
+            "name": "PET_ALL",
             "color": "primary",
             "showInStandby": true,
             "showInPrinting": true,
@@ -265,7 +251,7 @@
           },
           {
             "pos": 4,
-            "name": "PETG_E0",
+            "name": "PC_HEATERS",
             "color": "warning",
             "showInStandby": true,
             "showInPrinting": true,
@@ -273,7 +259,7 @@
           },
           {
             "pos": 5,
-            "name": "PETG_E1",
+            "name": "PC_BED",
             "color": "warning",
             "showInStandby": true,
             "showInPrinting": true,
@@ -281,7 +267,7 @@
           },
           {
             "pos": 6,
-            "name": "PETG_BED",
+            "name": "PC_ALL",
             "color": "warning",
             "showInStandby": true,
             "showInPrinting": true,
@@ -289,7 +275,7 @@
           },
           {
             "pos": 7,
-            "name": "PC_E0",
+            "name": "PLA_HEATERS",
             "color": "error",
             "showInStandby": true,
             "showInPrinting": true,
@@ -297,7 +283,7 @@
           },
           {
             "pos": 8,
-            "name": "PC_E1",
+            "name": "PLA_BED",
             "color": "error",
             "showInStandby": true,
             "showInPrinting": true,
@@ -305,33 +291,15 @@
           },
           {
             "pos": 9,
-            "name": "PC_BED",
+            "name": "PLA_ALL",
             "color": "error",
-            "showInStandby": true,
-            "showInPrinting": true,
-            "showInPause": true
-          }
-        ]
-      },
-      "ed6df0b8-6ead-4406-9785-cd7e830e66d5": {
-        "name": "Dual Nozzle Calibration",
-        "color": "primary",
-        "colorCustom": "#fff",
-        "showInStandby": true,
-        "showInPause": false,
-        "showInPrinting": false,
-        "macros": [
-          {
-            "pos": 1,
-            "name": "SET_DUAL_NOZZLE_OFFSET",
-            "color": "group",
             "showInStandby": true,
             "showInPrinting": true,
             "showInPause": true
           },
           {
-            "pos": 2,
-            "name": "GET_CURRENT_DUAL_NOZZLE_OFFSET",
+            "pos": 10,
+            "name": "DYNAPURGE_HEATERS",
             "color": "group",
             "showInStandby": true,
             "showInPrinting": true,
@@ -381,32 +349,32 @@
           },
           {
             "pos": 5,
-            "name": "UNLOAD_FILAMENT_LEFT",
-            "color": "primary",
+            "name": "PURGE_TWO_MINUTES",
+            "color": "group",
             "showInStandby": true,
             "showInPrinting": true,
             "showInPause": true
           },
           {
             "pos": 6,
-            "name": "UNLOAD_FILAMENT_RIGHT",
-            "color": "warning",
+            "name": "PURGE_FIVE_MINUTES",
+            "color": "group",
             "showInStandby": true,
             "showInPrinting": true,
             "showInPause": true
           },
           {
             "pos": 7,
-            "name": "LOAD_FILAMENT_LEFT",
-            "color": "primary",
+            "name": "PURGE_TEN_MINUTES",
+            "color": "group",
             "showInStandby": true,
             "showInPrinting": true,
             "showInPause": true
           },
           {
             "pos": 8,
-            "name": "LOAD_FILAMENT_RIGHT",
-            "color": "warning",
+            "name": "Z_GAP_CALIBRATION_POSITION",
+            "color": "secondary",
             "showInStandby": true,
             "showInPrinting": true,
             "showInPause": true
@@ -462,6 +430,9 @@
       "datasetSettings": {
         "extruder": {
           "power": false
+        },
+        "extruder1": {
+          "color": "#8E379D"
         }
       }
     },
