@@ -21,22 +21,13 @@ then
 	usage
 fi
 
-DEV=""
-if [[ -n "$2" && $2 == "-d" ]]
-then
-  echo Uploading to development pi
-  DEV=true
-  PRINTER_FILE="printer.cfg"
-  echo "[include gigabot_dev.cfg]" >> $PRINTER_FILE
-fi
-
 FIRST_THREE_OCTETS="10.1.10."
 
 read -p "Enter Gigabot Size: (1)Regular (2)XLT (3)Terabot (4)Exabot: " model; echo
 ./get_bedsize.sh $model
 
 echo Uploading to IP $FIRST_THREE_OCTETS$1
-scp -r {./*.cfg,./*.conf,./get_serial.sh,./*.cfg.tmpl} pi@$FIRST_THREE_OCTETS$1:~/klipper_config/
+scp -r {./*.cfg,./*.conf,./get_serial.sh} pi@$FIRST_THREE_OCTETS$1:~/klipper_config/
 
 if [[ $DEV == "true" ]]
 then
