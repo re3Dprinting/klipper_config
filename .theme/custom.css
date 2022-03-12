@@ -1,0 +1,12 @@
+@font-face {
+    font-family: Lato;
+    src:url("Lato-Regular.ttf");
+}
+
+.v-application {
+  font-family: 'Lato', sans-serif;
+}
+
+.subheading {
+    font-size: 1rem
+}
