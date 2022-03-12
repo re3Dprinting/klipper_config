@@ -20,18 +20,18 @@ fi
 
 
 REPLACE_FILE=""
-NEW_FILE="bot_flavor.cfg"
+NEW_FILE="_platform_type.cfg"
 
 case $1 in
   1) #Regular
     echo "Setting up for Gigabot Regular..."
-    REPLACE_FILE="bot_flavors/gigabot.cfg.tmpl";;
+    REPLACE_FILE="platform_type/gigabot.cfg";;
   2) #XLT
     echo "Setting up for Gigabot XLT..."
-    REPLACE_FILE="bot_flavors/gigabotXLT.cfg.tmpl";;
+    REPLACE_FILE="platform_type/gigabotXLT.cfg";;
   3) #Terabot
     echo "Setting up for Gigabot Terabot..."
-    REPLACE_FILE="bot_flavors/terabot.cfg.tmpl";;
+    REPLACE_FILE="platform_type/terabot.cfg";;
   4) #Exabot
     echo Exabot current unavailable.; exit 1;;
   *)

@@ -1,6 +1,2 @@
-gigabot_mcu.cfg
-gigabot_dev.cfg
-gigabot_save_variables.cfg
-gigabot_standalone_config.cfg
-bot_flavor.cfg
+_*.cfg
 moonraker.conf

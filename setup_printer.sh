@@ -14,7 +14,7 @@ Usage: $(basename "${BASH_SOURCE[0]}") [-b bedsize] [-d | -uart | -internal]
     4) Exabot
 
 [-d | -uart | -internal]
-    -d          Generate a gigabot_dev.cfg file for re:3D's SDK
+    -d          Generate a _dev_sdk.cfg file for re:3D's SDK
     -uart       Use uart instead of USB for communication
     -internal   Set up mainsail to point to web_beta (Prerelease)
     -a          Add archimajor pinmap/specific config files 
@@ -65,15 +65,13 @@ $PWD/get_bedsize.sh $PLATFORM
 if [[ $DEV == "TRUE" ]]
 then
     echo "Setting up for SDK Pi..."
-    cp $TMPL_PWD/gigabot_dev.cfg.tmpl $PWD/_gigabot_dev.cfg
-else
-    echo "" > $PWD/_gigabot_dev.cfg
+    cp $TMPL_PWD/dev_sdk.cfg $PWD/_dev_sdk.cfg
 fi
 
 $PWD/get_serial.sh $UART
 
-add_tmpl_if_not_exist $TMPL_PWD/gigabot_save_variables.cfg.tmpl $PWD/_gigabot_save_variables.cfg
-add_tmpl_if_not_exist $TMPL_PWD/gigabot_standalone_config.cfg.tmpl $PWD/_gigabot_standalone_config.cfg
+add_tmpl_if_not_exist $TMPL_PWD/save_variables.cfg $PWD/_save_variables.cfg
+add_tmpl_if_not_exist $TMPL_PWD/standalone.cfg $PWD/_standalone.cfg
 add_overwrite $TMPL_PWD/moonraker.conf.tmpl $PWD/moonraker.conf
 
 if [[ $ARCHIM == "TRUE" ]]
