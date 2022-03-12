@@ -65,22 +65,24 @@ $PWD/get_bedsize.sh $PLATFORM
 if [[ $DEV == "TRUE" ]]
 then
     echo "Setting up for SDK Pi..."
-    cp $TMPL_PWD/gigabot_dev.cfg.tmpl $PWD/gigabot_dev.cfg
+    cp $TMPL_PWD/gigabot_dev.cfg.tmpl $PWD/_gigabot_dev.cfg
 else
-    echo "" > $PWD/gigabot_dev.cfg
+    echo "" > $PWD/_gigabot_dev.cfg
 fi
 
 $PWD/get_serial.sh $UART
 
-add_tmpl_if_not_exist $TMPL_PWD/gigabot_save_variables.cfg.tmpl $PWD/gigabot_save_variables.cfg
-add_tmpl_if_not_exist $TMPL_PWD/gigabot_standalone_config.cfg.tmpl $PWD/gigabot_standalone_config.cfg
+add_tmpl_if_not_exist $TMPL_PWD/gigabot_save_variables.cfg.tmpl $PWD/_gigabot_save_variables.cfg
+add_tmpl_if_not_exist $TMPL_PWD/gigabot_standalone_config.cfg.tmpl $PWD/_gigabot_standalone_config.cfg
 add_overwrite $TMPL_PWD/moonraker.conf.tmpl $PWD/moonraker.conf
 
 if [[ $ARCHIM == "TRUE" ]]
 then
+    echo "Archimajor Board Selected"
     add_overwrite $BOARD_PWD/archimajor_pinmap.cfg $PWD/_board_pinmap.cfg
     add_overwrite $BOARD_PWD/archimajor_specific.cfg $PWD/_board_specific.cfg
 else
+    echo "Azteeg Board Selected"
     add_overwrite $BOARD_PWD/azteeg_pinmap.cfg $PWD/_board_pinmap.cfg
     add_overwrite $BOARD_PWD/azteeg_specific.cfg $PWD/_board_specific.cfg
 fi
