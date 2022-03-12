@@ -1,18 +1,32 @@
 {
-  "general": {
-    "printername": "Gigabot"
-  },
   "console": {
     "direction": "shell",
-    "entryStyle": "compact"
+    "entryStyle": "compact",
+    "hideWaitTemperatures": true
   },
   "control": {
     "style": "cross",
-    "selectedCrossStep": 4,
+    "selectedCrossStep": 3,
     "extruder": {
-      "feedamount": 25,
-      "feedrate": 2
-    }
+      "feedamount": 50,
+      "feedrate": 2,
+      "feedamounts": [
+        50,
+        25,
+        10
+      ],
+      "feedrates": [
+        5,
+        2,
+        1
+      ]
+    },
+    "stepsAll": [
+      100,
+      10,
+      1,
+      0.1
+    ]
   },
   "dashboard": {
     "widescreenLayout3": [
@@ -204,9 +218,23 @@
       }
     ],
     "nonExpandPanels": [
-      "printsettings-panel",
-      "webcam-panel"
+      "machine-settings-panel",
+      "machine-systemload-panel",
+      "machine-endstop-panel",
+      "machine-logfiles-panel",
+      "miscellaneous-panel",
+      "zoffset-panel",
+      "macrogroup_ed6df0b8-6ead-4406-9785-cd7e830e66d5_panel"
     ]
+  },
+  "gcodeViewer": {
+    "colorMode": 0,
+    "specularLighting": true,
+    "hdRendering": true,
+    "showTravelMoves": true,
+    "transparency": true,
+    "voxelMode": false,
+    "forceLineRendering": true
   },
   "gcodefiles": {
     "countPerPage": 10,
@@ -219,14 +247,8 @@
       "slicer"
     ]
   },
-  "gcodeViewer": {
-    "colorMode": 0,
-    "specularLighting": true,
-    "hdRendering": true,
-    "showTravelMoves": true,
-    "transparency": true,
-    "voxelMode": false,
-    "forceLineRendering": true
+  "remoteprinters": {
+    "printers": {}
   },
   "macros": {
     "mode": "expert",
@@ -442,27 +464,8 @@
   "presets": {
     "presets": {}
   },
-  "remoteprinters": {
-    "printers": {}
-  },
   "theme": {
     "logo": "#FFFFFF"
-  },
-  "uiSettings": {
-    "logo": "#FFFFFF",
-    "boolBigThumbnail": true,
-    "boolWebcamNavi": true,
-    "displayCancelPrint": true,
-    "lockSlidersOnTouchDevices": true,
-    "navigationStyle": "iconsOnly",
-    "boolHideUploadAndPrintButton": false,
-    "displayZOffsetStandby": true,
-    "confirmOnEmergencyStop": false,
-    "confirmOnPowerDeviceChange": false,
-    "primary": "#E4DB32"
-  },
-  "webcamSettings": {
-    "boolNavi": true
   },
   "view": {
     "history": {
@@ -483,8 +486,9 @@
     },
     "configfiles": {
       "countPerPage": 50,
-      "sortBy": "modified",
-      "sortDesc": true
+      "sortBy": "filename",
+      "sortDesc": false,
+      "showHiddenFiles": true
     },
     "tempchart": {
       "autoscale": true,
@@ -492,13 +496,32 @@
       "datasetSettings": {
         "extruder": {
           "power": false
+        },
+        "extruder1": {
+          "color": "#8E379D"
         }
       }
     },
     "gcodefiles": {
-      "showHiddenFiles": false,
+      "showHiddenFiles": true,
       "countPerPage": -1
     }
+  },
+  "webcamSettings": {
+    "boolNavi": true
+  },
+  "uiSettings": {
+    "logo": "#FFFFFF",
+    "boolBigThumbnail": true,
+    "boolWebcamNavi": true,
+    "displayCancelPrint": true,
+    "lockSlidersOnTouchDevices": true,
+    "navigationStyle": "iconsOnly",
+    "boolHideUploadAndPrintButton": true,
+    "displayZOffsetStandby": true,
+    "confirmOnEmergencyStop": false,
+    "confirmOnPowerDeviceChange": false,
+    "primary": "#E4DB32"
   },
   "webcams": {
     "ce495087-8163-4e80-89dd-cca6069c299b": {
