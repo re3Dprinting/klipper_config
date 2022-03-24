@@ -73,6 +73,7 @@ $PWD/get_serial.sh $UART
 add_tmpl_if_not_exist $TMPL_PWD/save_variables.cfg $PWD/_save_variables.cfg
 add_tmpl_if_not_exist $TMPL_PWD/standalone.cfg $PWD/_standalone.cfg
 add_overwrite $TMPL_PWD/moonraker.conf.tmpl $PWD/moonraker.conf
+add_overwrite $TMPL_PWD/wifi_setup.conf.tmpl $PWD/wifi_setup.conf
 
 if [[ $ARCHIM == "TRUE" ]]
 then
