@@ -28,9 +28,10 @@ then
 fi
 
 PWD="$(cd "$(dirname "$0")" && pwd)"
-HOME=$PWD/..
-TMPL_PWD=$PWD/templates
-BOARD_PWD=$PWD/board_type
+KLIPPER_CONFIG_PWD=$PWD/..
+HOME=$KLIPPER_CONFIG_PWD/..
+TMPL_PWD=$KLIPPER_CONFIG_PWD/templates
+BOARD_PWD=$KLIPPER_CONFIG_PWD/board_type
 
 function add_tmpl_if_not_exist {
     tmpl_file=$1
@@ -65,25 +66,25 @@ $PWD/get_bedsize.sh $PLATFORM
 if [[ $DEV == "TRUE" ]]
 then
     echo "Setting up for SDK Pi..."
-    cp $TMPL_PWD/dev_sdk.cfg $PWD/_dev_sdk.cfg
+    cp $TMPL_PWD/dev_sdk.cfg $KLIPPER_CONFIG_PWD/_dev_sdk.cfg
 fi
 
 $PWD/get_serial.sh $UART
 
-add_tmpl_if_not_exist $TMPL_PWD/save_variables.cfg $PWD/_save_variables.cfg
-add_tmpl_if_not_exist $TMPL_PWD/standalone.cfg $PWD/_standalone.cfg
-add_overwrite $TMPL_PWD/moonraker.conf.tmpl $PWD/moonraker.conf
-add_overwrite $TMPL_PWD/wifi_setup.conf.tmpl $PWD/wifi_setup.conf
+add_tmpl_if_not_exist $TMPL_PWD/save_variables.cfg $KLIPPER_CONFIG_PWD/_save_variables.cfg
+add_tmpl_if_not_exist $TMPL_PWD/standalone.cfg $KLIPPER_CONFIG_PWD/_standalone.cfg
+add_overwrite $TMPL_PWD/moonraker.conf.tmpl $KLIPPER_CONFIG_PWD/moonraker.conf
+add_overwrite $TMPL_PWD/wifi_setup.conf.tmpl $KLIPPER_CONFIG_PWD/wifi_setup.conf
 
 if [[ $ARCHIM == "TRUE" ]]
 then
     echo "Archimajor Board Selected"
-    add_overwrite $BOARD_PWD/archimajor_pinmap.cfg $PWD/_board_pinmap.cfg
-    add_overwrite $BOARD_PWD/archimajor_specific.cfg $PWD/_board_specific.cfg
+    add_overwrite $BOARD_PWD/archimajor_pinmap.cfg $KLIPPER_CONFIG_PWD/_board_pinmap.cfg
+    add_overwrite $BOARD_PWD/archimajor_specific.cfg $KLIPPER_CONFIG_PWD/_board_specific.cfg
 else
     echo "Azteeg Board Selected"
-    add_overwrite $BOARD_PWD/azteeg_pinmap.cfg $PWD/_board_pinmap.cfg
-    add_overwrite $BOARD_PWD/azteeg_specific.cfg $PWD/_board_specific.cfg
+    add_overwrite $BOARD_PWD/azteeg_pinmap.cfg $KLIPPER_CONFIG_PWD/_board_pinmap.cfg
+    add_overwrite $BOARD_PWD/azteeg_specific.cfg $KLIPPER_CONFIG_PWD/_board_specific.cfg
 fi
 
 if [[ $INTERNAL == "TRUE" ]]
@@ -91,5 +92,5 @@ then
     echo "Setting up klipper, moonraker to develop branch, mainsail to web_beta"
     cd $HOME/klipper && git checkout develop
     cd $HOME/moonraker && git checkout develop
-    sed -i 's/type: web/type: web_beta/g' $PWD/moonraker.cfg
+    sed -i 's/type: web/type: web_beta/g' $KLIPPER_CONFIG_PWD/moonraker.cfg
 fi

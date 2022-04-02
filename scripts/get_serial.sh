@@ -1,7 +1,8 @@
 #!/bin/bash
 
 PWD="$(cd "$(dirname "$0")" && pwd)"
-TMPL_PWD=$PWD/templates
+KLIPPER_CONFIG_PWD=$PWD/..
+TMPL_PWD=$KLIPPER_CONFIG_PWD/templates
 
 if [[ -n "$1" && $1 == "-uart" ]]
 then
@@ -19,4 +20,4 @@ fi
 
 SERIAL_LINE='serial: .*'
 NEW_SERIAL_LINE="serial: $serial"
-sed --expression "s|$SERIAL_LINE|$NEW_SERIAL_LINE|g" $TMPL_PWD/serial.cfg > $PWD/_serial.cfg
+sed --expression "s|$SERIAL_LINE|$NEW_SERIAL_LINE|g" $TMPL_PWD/serial.cfg > $KLIPPER_CONFIG_PWD/_serial.cfg

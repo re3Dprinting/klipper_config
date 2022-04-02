@@ -19,23 +19,27 @@ then
 fi
 
 
-REPLACE_FILE=""
+PWD="$(cd "$(dirname "$0")" && pwd)"
+KLIPPER_CONFIG_PWD=$PWD/..
+PLATFORM_PWD=$KLIPPER_CONFIG_PWD/platform_type
+
+PLATFORM_FILE=""
 NEW_FILE="_platform_type.cfg"
 
 case $1 in
   1) #Regular
     echo "Setting up for Gigabot Regular..."
-    REPLACE_FILE="platform_type/gigabot.cfg";;
+    PLATFORM_FILE="gigabot.cfg";;
   2) #XLT
     echo "Setting up for Gigabot XLT..."
-    REPLACE_FILE="platform_type/gigabotXLT.cfg";;
+    PLATFORM_FILE="gigabotXLT.cfg";;
   3) #Terabot
     echo "Setting up for Gigabot Terabot..."
-    REPLACE_FILE="platform_type/terabot.cfg";;
+    PLATFORM_FILE="terabot.cfg";;
   4) #Exabot
     echo Exabot current unavailable.; exit 1;;
   *)
     usage; exit 1;;
 esac
 
-cat "$REPLACE_FILE" > "$NEW_FILE"
+cat "$PLATFORM_PWD/$PLATFORM_FILE" > "$KLIPPER_CONFIG_PWD/$NEW_FILE"

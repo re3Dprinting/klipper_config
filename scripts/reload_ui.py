@@ -5,7 +5,7 @@ import os
 import pathlib
 
 url = "http://localhost"
-pwd = str(pathlib.Path(__file__).parent.resolve())
+pwd = str(pathlib.Path(__file__).parent.parent.resolve())
 with open(pwd+"/.theme/default.json") as f:
     defaults = json.load(f)
 namespaces = [name for name in defaults]
