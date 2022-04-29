@@ -5,7 +5,7 @@
   },
   "control": {
     "style": "cross",
-    "selectedCrossStep": 5,
+    "selectedCrossStep": 3,
     "extruder": {
       "feedamount": 25,
       "feedrate": 5
@@ -150,7 +150,7 @@
     "mobileLayout": [
       {
         "name": "webcam",
-        "visible": true
+        "visible": false
       },
       {
         "name": "tools",
@@ -383,6 +383,9 @@
       }
     }
   },
+  "presets": {
+    "presets": {}
+  },
   "remoteprinters": {
     "printers": {}
   },
@@ -422,7 +425,8 @@
     "configfiles": {
       "countPerPage": 50,
       "sortBy": "modified",
-      "sortDesc": true
+      "sortDesc": true,
+      "showHiddenFiles": true
     },
     "tempchart": {
       "autoscale": true,
@@ -439,21 +443,6 @@
     "gcodefiles": {
       "showHiddenFiles": false,
       "countPerPage": -1
-    }
-  },
-  "webcamSettings": {
-    "boolNavi": true
-  },
-  "webcams": {
-    "ce495087-8163-4e80-89dd-cca6069c299b": {
-      "name": "Default",
-      "icon": "mdi-webcam",
-      "service": "mjpegstreamer-adaptive",
-      "targetFps": 15,
-      "urlStream": "/webcam/?action=stream",
-      "urlSnapshot": "/webcam/?action=snapshot",
-      "flipX": false,
-      "flipY": false
     }
   }
 }
