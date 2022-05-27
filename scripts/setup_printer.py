@@ -52,34 +52,38 @@ def add_board_type(board):
     add_template_file(template_board_pinmap, generate_board_pinmap, True)
     add_template_file(template_board_specific, generate_board_specific, True)
 
-#Handle First Time .master.cfg Generation
-master_config_path = klipper_path / ".master.cfg"
-args = sys.argv
-for arg in args:
-    if arg == "-g":
-        print("First time setup, generating .master.cfg")
+def main():
+    #Handle First Time .master.cfg Generation
+    master_config_path = klipper_path / ".master.cfg"
+    args = sys.argv
+    for arg in args:
+        if arg == "-g":
+            print("First time setup, generating .master.cfg")
+            add_template_file(template_path / "master.cfg", master_config_path)
+
+    if not master_config_path.exists():
+        print(".master.cfg is missing! autogenerating to default")
         add_template_file(template_path / "master.cfg", master_config_path)
 
-if not master_config_path.exists():
-    print(".master.cfg is missing! autogenerating to default")
-    add_template_file(template_path / "master.cfg", master_config_path)
+    master_config = configparser.ConfigParser(inline_comment_prefixes="#")
+    master_config.read(str(master_config_path))
+    printer_config = master_config["re3D"]
+    # for p in printer_config: print(p)
 
-master_config = configparser.ConfigParser(inline_comment_prefixes="#")
-master_config.read(str(master_config_path))
-printer_config = master_config["re3D"]
-# for p in printer_config: print(p)
+    #Platform Setup
+    add_platform_type(printer_config.get("platform_type", ""))
+    #Board Setup
+    add_board_type(printer_config.get("board_type", ""))
 
-#Platform Setup
-add_platform_type(printer_config.get("platform_type", ""))
-#Board Setup
-add_board_type(printer_config.get("board_type", ""))
+    #Template File Setup
+    add_template_file(template_path / "save_variables.cfg", klipper_path / "_save_variables.cfg")
+    add_template_file(template_path / "standalone.cfg", klipper_path / "_standalone.cfg")
+    add_template_file(template_path / "wifi_setup.conf.tmpl", klipper_path / "wifi_setup.conf")
+    add_template_file(template_path / "moonraker.conf.tmpl", klipper_path / "moonraker.conf", True)
 
-#Template File Setup
-add_template_file(template_path / "save_variables.cfg", klipper_path / "_save_variables.cfg")
-add_template_file(template_path / "standalone.cfg", klipper_path / "_standalone.cfg")
-add_template_file(template_path / "wifi_setup.conf.tmpl", klipper_path / "wifi_setup.conf")
-add_template_file(template_path / "moonraker.conf.tmpl", klipper_path / "moonraker.conf", True)
+    #Serial Setup
+    serial_out = subprocess.run([str(klipper_scripts / "get_serial.sh")], capture_output=True)
+    print(serial_out.stdout.decode("utf-8"))
 
-#Serial Setup
-serial_out = subprocess.run([str(klipper_scripts / "get_serial.sh")], capture_output=True)
-print(serial_out.stdout.decode("utf-8"))
+if __name__ == "__main__":
+    main()
