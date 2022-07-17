@@ -53,9 +53,10 @@ def add_board_type(board):
     add_template_file(template_board_specific, generate_board_specific, True)
 
 def add_crammer(enabled):
-    template_crammer = template_path / "fgf_crammer.cfg.tmpl" 
-    generate_crammer = klipper_path / "fgf_crammer.cfg" 
-    add_template_file(template_crammer, generate_crammer, True)
+    if enabled.lower() == "true":
+        template_crammer = template_path / "fgf_crammer.cfg" 
+        generate_crammer = klipper_path / "_fgf_crammer.cfg" 
+        add_template_file(template_crammer, generate_crammer, True)
 
 def main():
     #Handle First Time .master.cfg Generation

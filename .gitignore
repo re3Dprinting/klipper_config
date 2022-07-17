@@ -2,7 +2,6 @@ _*.cfg
 moonraker.conf
 wifi_setup.conf
 .master.cfg
-fgf_crammer.cfg
 
 # Python Ignores
 __pycache__/
