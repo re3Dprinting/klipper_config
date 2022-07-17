@@ -52,6 +52,11 @@ def add_board_type(board):
     add_template_file(template_board_pinmap, generate_board_pinmap, True)
     add_template_file(template_board_specific, generate_board_specific, True)
 
+def add_crammer(enabled):
+    template_crammer = board_path / "fgf.crammer.cfg.tmpl" 
+    generate_crammer = board_path / "fgf.crammer.cfg" 
+    add_template_file(template_crammer, generate_crammer, True)
+
 def main():
     #Handle First Time .master.cfg Generation
     master_config_path = klipper_path / ".master.cfg"
@@ -74,6 +79,9 @@ def main():
     add_platform_type(printer_config.get("platform_type", ""))
     #Board Setup
     add_board_type(printer_config.get("board_type", ""))
+
+    #Crammer Setup
+    add_crammer(printer_config.get("crammer_enabled", "false"))
 
     #Template File Setup
     add_template_file(template_path / "save_variables.cfg", klipper_path / "_save_variables.cfg")
