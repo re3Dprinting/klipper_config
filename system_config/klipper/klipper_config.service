@@ -1,0 +1,10 @@
+[Unit]
+Description=Script that calls ~/klipper_config/reload_ui.py to reset mainsail UI interface
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/klipper_config/scripts
+ExecStart=/usr/bin/python3 /home/pi/gigabot_touchscreen_config/klipper/reload.py
+
+[Install]
+WantedBy=multi-user.target
