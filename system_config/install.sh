@@ -2,16 +2,7 @@
 
 usage() {
   cat << EOF # remove the space between << and EOF, this is due to web plugin issue
-Usage: $(basename "${BASH_SOURCE[0]}") [bedsize]
-
-[bedsize]
-    1) Regular
-    2) XLT
-    3) Terabot
-    4) Exabot
-[-d]
-    puts bot into development mode. klipper, moonraker, mainsail will be placed on develop branches
-    This should be used only for internal bots. 
+Usage: $(basename "${BASH_SOURCE[0]}")
 EOF
   exit
 }
@@ -64,9 +55,6 @@ fi
 if [ ! -d "$HOME/virtual_keyboard" ] ; then
     git clone https://github.com/re3Dprinting/virtual_keyboard.git
 fi
-if [ ! -d "$HOME/klipper_config" ] ; then
-    git clone https://github.com/re3Dprinting/klipper_config.git
-fi
 
 # Reset to a particular hash for kiauh so future commits do not break exp script
 cd $HOME/kiauh
@@ -92,8 +80,8 @@ git remote set-url origin https://github.com/re3Dprinting/moonraker.git
 git pull
 git reset --hard origin/master
 
+# Initial run of setup_printer.py to generate .master.cfg file
 cd $HOME/klipper_config
-git checkout fff
 ./scripts/setup_printer.py
 EOF
 
