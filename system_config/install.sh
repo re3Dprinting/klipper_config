@@ -13,7 +13,7 @@ if [ "$EUID" -ne 0 ]
 fi
 
 PWD="$(cd "$(dirname "$0")" && pwd)"
-HOME=$PWD/..
+HOME=$PWD/../..
 
 function check_and_overwrite {
     overwrite_file=$1
