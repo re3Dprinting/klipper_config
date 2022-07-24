@@ -3,9 +3,7 @@ import sys
 import requests
 import json
 import os
-import subprocess
 import configparser
-import time
 from git import Repo
 from pathlib import Path
 
@@ -18,7 +16,9 @@ klipper_config_path = home_path / "klipper_config"
 klipper_config_scripts = klipper_config_path / "scripts"
 master_config_path = klipper_config_path / ".master.cfg"
 
-master_config = configparser.ConfigParser(inline_comment_prefixes="#").read(str(master_config_path))["re3D"]
+master_config = configparser.ConfigParser(inline_comment_prefixes="#")
+master_config.read(str(master_config_path))
+master_config = master_config["re3D"]
 
 MASTER_BRANCH_VALID = {"stable", "develop"}
 KLIPPER_BRANCH_MAP = {"stable": "master", "develop": "develop"}
