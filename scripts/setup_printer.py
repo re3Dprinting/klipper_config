@@ -1,5 +1,6 @@
 #!/bin/python3
 import shutil
+import os
 from pathlib import Path
 
 klipper_scripts = Path(__file__).parent.resolve()
@@ -27,7 +28,9 @@ OUTPUT_PATH = KLIPPER_PATH / "build"
 #overwrite - moonraker.cfg check git hash for correct moonraker.cfg
 
 def add_template_file(template_file, add_file, replace=False):
-    if not replace and Path(add_file).exists():
+    if not is_valid_path(template_file):
+        return
+    elif not replace and Path(add_file).exists():
         print("{} exists! skipping...".format(add_file))
         return
     shutil.copyfile(template_file, add_file)
@@ -54,7 +57,7 @@ def add_board_type(board, board_path):
 
     board_pinmap_file = board + "_pinmap.cfg"
     generate_board_pinmap = OUTPUT_PATH / board_pinmap_file
-    template_board_pinmap = klipper_path / "board_pinmap" / board_pinmap_file
+    template_board_pinmap = KLIPPER_PATH / "board_pinmap" / board_pinmap_file
     add_template_file(template_board_pinmap, generate_board_pinmap, True)
 
     board_specific_file = board + "_specific.cfg"
@@ -62,9 +65,15 @@ def add_board_type(board, board_path):
     template_board_specific = board_path / (board + "_specific.cfg")
     add_template_file(template_board_specific, generate_board_specific, True)
 
+def add_config(config_path):
+    if not is_valid_path(config_path): return 
+    for config_file in config_path.iterdir():
+        generate_file = OUTPUT_PATH / config_file.name
+        add_template_file(config_file, generate_file, True)
+
 def is_valid_path(path):
     if not path.exists():
-        print("{path} is missing!")
+        print("{} does not exist!".format(path))
         return False
     return True
 
@@ -73,17 +82,22 @@ def setup_printer(printer_config, deposition_type):
 
     platform_path = deposition_type_path / "platform_specific"
     board_path = deposition_type_path / "board_specific"
+    config_path = deposition_type_path / "config"
     if not is_valid_path(platform_path) or not is_valid_path(board_path):
         return
+    
+    if not is_valid_path(OUTPUT_PATH):
+        os.mkdir(OUTPUT_PATH)
 
     #Platform Setup
     add_platform_type(printer_config.get("platform_type", ""), platform_path)
     #Board Setup
     add_board_type(printer_config.get("board_type", ""), board_path)
+    #Rest of the config setup
+    add_config(config_path)
 
     #Common Files Setup
     add_template_file(COMMON_PATH / "save_variables.cfg", KLIPPER_PATH / "_save_variables.cfg")
     add_template_file(COMMON_PATH / "standalone.cfg", KLIPPER_PATH / "_standalone.cfg")
     add_template_file(COMMON_PATH / "wifi_setup.conf.tmpl", KLIPPER_PATH / "wifi_setup.conf")
     add_template_file(COMMON_PATH / "moonraker.conf.tmpl", KLIPPER_PATH / "moonraker.conf", True)
-
