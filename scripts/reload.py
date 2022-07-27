@@ -4,6 +4,7 @@ import requests
 import json
 import os
 import configparser
+import subprocess
 from pathlib import Path
 
 import setup_printer
@@ -13,6 +14,7 @@ from branch_check import moonraker_klipper_branch_check
 url = "http://localhost"
 home_path = Path(__file__).parent.resolve().parent.parent
 
+klipper_scripts = Path(__file__).parent.resolve()
 klipper_config_path = home_path / "klipper_config"
 fgf_config_path = klipper_config_path / "fgf"
 fff_config_path = klipper_config_path / "fff"
@@ -25,7 +27,7 @@ def read_master_config():
 
     master_config = configparser.ConfigParser(inline_comment_prefixes="#")
     master_config.read(str(master_config_path))
-    return master_config["re3D"]
+    return master_config
     # for p in printer_config: print(p)
 
 def wait_on_moonraker():
@@ -73,6 +75,28 @@ def reboot_services():
 
 def main():
     master_config = read_master_config()
+
+    #Determine deposition type
+    if "fff" in master_config:
+        deposition_type = "fff"
+        print_config = master_config["fff"]
+    elif "fgf" in master_config:
+        deposition_type = "fgf"
+        print_config = master_config["fgf"]
+
+    if not deposition_type:
+        print("fff or fgf section is not defined in master.cfg. Please enable one of the sections.")
+        return
+    elif not print_config:
+        print("Configuration section for {deposition_type} does not exist!")
+        return
+    
+    setup_printer.setup_printer(print_config, deposition_type)
+
+    #Serial Setup
+    serial_out = subprocess.run([str(klipper_scripts / "get_serial.sh")], capture_output=True)
+    print(serial_out.stdout.decode("utf-8"))
+    
     #Block until moonraker system service comes up. 
     wait_on_moonraker()
     if check_network_availability():
