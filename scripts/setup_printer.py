@@ -13,6 +13,7 @@ FFF_PATH = KLIPPER_PATH / "fff"
 board_path = KLIPPER_PATH / "board_specific"
 
 OUTPUT_PATH = KLIPPER_PATH / "build"
+THEME_PATH = KLIPPER_PATH / ".theme"
 
 #attempt to generate master.cfg from master.cfg.tmpl
 #read in master.cfg
@@ -71,6 +72,12 @@ def add_config(config_path):
         generate_file = OUTPUT_PATH / config_file.name
         add_template_file(config_file, generate_file, True)
 
+def add_theme(theme_path):
+    if not is_valid_path(theme_path): return 
+    for theme_file in theme_path.iterdir():
+        generate_file = THEME_PATH / theme_file.name
+        add_template_file(theme_file, generate_file, True)
+
 def is_valid_path(path):
     if not path.exists():
         print("{} does not exist!".format(path))
@@ -78,16 +85,24 @@ def is_valid_path(path):
     return True
 
 def setup_printer(printer_config, deposition_type):
-    deposition_type_path = FGF_PATH if deposition_type is "fgf" else FFF_PATH
+    deposition_type_path = FGF_PATH if deposition_type == "fgf" else FFF_PATH
 
     platform_path = deposition_type_path / "platform_specific"
     board_path = deposition_type_path / "board_specific"
     config_path = deposition_type_path / "config"
+    theme_path = deposition_type_path / ".theme"
     if not is_valid_path(platform_path) or not is_valid_path(board_path):
         return
     
-    if not is_valid_path(OUTPUT_PATH):
+    # Wipe and recreate build path
+    if is_valid_path(OUTPUT_PATH): 
+        shutil.rmtree(OUTPUT_PATH)
         os.mkdir(OUTPUT_PATH)
+
+    # Wipe and recreate theme path
+    if is_valid_path(THEME_PATH): 
+        shutil.rmtree(THEME_PATH)
+        os.mkdir(THEME_PATH)
 
     #Platform Setup
     add_platform_type(printer_config.get("platform_type", ""), platform_path)
@@ -95,6 +110,8 @@ def setup_printer(printer_config, deposition_type):
     add_board_type(printer_config.get("board_type", ""), board_path)
     #Rest of the config setup
     add_config(config_path)
+    #Setup theme path
+    add_theme(theme_path)
 
     #Common Files Setup
     add_template_file(COMMON_PATH / "save_variables.cfg", KLIPPER_PATH / "_save_variables.cfg")
