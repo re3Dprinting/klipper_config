@@ -79,19 +79,34 @@ def main():
     #Determine deposition type
     if "fff" in master_config:
         deposition_type = "fff"
-        print_config = master_config["fff"]
+        printer_config = master_config["fff"]
     elif "fgf" in master_config:
         deposition_type = "fgf"
-        print_config = master_config["fgf"]
+        printer_config = master_config["fgf"]
 
     if not deposition_type:
         print("fff or fgf section is not defined in master.cfg. Please enable one of the sections.")
         return
-    elif not print_config:
+    elif not printer_config:
         print("Configuration section for {deposition_type} does not exist!")
         return
     
-    setup_printer.setup_printer(print_config, deposition_type)
+    # Validate board type
+    board = printer_config.get("board_type", "")
+    valid_board = ["azteeg", "archimajor"]
+    if board not in valid_board:
+        print("WARN: Invalid board type in master.cfg, defaulting to archimajor")
+        board = "archimajor"
+    
+    #Validate platform type
+    platform = printer_config.get("platform_type", "")
+    valid_platform = ["regular", "xlt", "terabot"]
+    if platform not in valid_platform:
+        print("Invalid platform type in master.cfg, defaulting to regular")
+        platform = "regular"
+
+    print("Setting up printer as a {} {} {} machine".format(deposition_type, board, platform))
+    setup_printer.setup_printer(deposition_type, board, platform)
 
     #Serial Setup
     serial_out = subprocess.run([str(klipper_scripts / "get_serial.sh")], capture_output=True)

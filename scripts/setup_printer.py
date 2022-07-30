@@ -38,32 +38,23 @@ def add_template_file(template_file, add_file, replace=False):
     print("Adding/Overwriting {}".format(add_file))
 
 
-def add_platform_type(platform, platform_path):
-    valid_platform = ["regular", "xlt", "terabot"]
-    if platform not in valid_platform:
-        print("Invalid platform type in master.cfg, defaulting to regular")
-        platform = "regular"
-
-    platform_file = (platform + ".cfg")
+def add_platform_specific(platform, board, platform_path):
+    platform_file = "{}_{}.cfg".format(board, platform)
     generate_platform = OUTPUT_PATH / platform_file
     template_platform = platform_path / platform_file
     add_template_file(template_platform, generate_platform, True) 
 
-
-def add_board_type(board, board_path):
-    valid_board = ["azteeg", "archimajor"]
-    if board not in valid_board:
-        print("Invalid board type in master.cfg, defaulting to archim")
-        board = "archim"
-
+def add_board_pinmap(board):
     board_pinmap_file = board + "_pinmap.cfg"
     generate_board_pinmap = OUTPUT_PATH / board_pinmap_file
-    template_board_pinmap = KLIPPER_PATH / "board_pinmap" / board_pinmap_file
+    template_board_pinmap = PINMAP_PATH / board_pinmap_file
     add_template_file(template_board_pinmap, generate_board_pinmap, True)
 
+
+def add_board_specific(board, board_path):
     board_specific_file = board + "_specific.cfg"
     generate_board_specific= OUTPUT_PATH / board_specific_file
-    template_board_specific = board_path / (board + "_specific.cfg")
+    template_board_specific = board_path / board_specific_file
     add_template_file(template_board_specific, generate_board_specific, True)
 
 def add_config(config_path):
@@ -84,7 +75,7 @@ def is_valid_path(path):
         return False
     return True
 
-def setup_printer(printer_config, deposition_type):
+def setup_printer(deposition_type, board, platform):
     deposition_type_path = FGF_PATH if deposition_type == "fgf" else FFF_PATH
 
     platform_path = deposition_type_path / "platform_specific"
@@ -97,17 +88,19 @@ def setup_printer(printer_config, deposition_type):
     # Wipe and recreate build path
     if is_valid_path(OUTPUT_PATH): 
         shutil.rmtree(OUTPUT_PATH)
-        os.mkdir(OUTPUT_PATH)
+    os.mkdir(OUTPUT_PATH)
 
-    # Wipe and recreate theme path
+    # Wipe and recreate .theme path
     if is_valid_path(THEME_PATH): 
         shutil.rmtree(THEME_PATH)
-        os.mkdir(THEME_PATH)
+    os.mkdir(THEME_PATH)
 
-    #Platform Setup
-    add_platform_type(printer_config.get("platform_type", ""), platform_path)
-    #Board Setup
-    add_board_type(printer_config.get("board_type", ""), board_path)
+    # Platform Setup
+    add_platform_specific(platform, board, platform_path)
+    # Board Pinmap Setup
+    add_board_pinmap(board)
+    # Board Specific Setup
+    add_board_specific(board, board_path)
     #Rest of the config setup
     add_config(config_path)
     #Setup theme path
