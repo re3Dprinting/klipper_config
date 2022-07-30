@@ -7,7 +7,7 @@ from pathlib import Path
 klipper_scripts = Path(__file__).parent.resolve()
 KLIPPER_PATH = klipper_scripts.parent
 COMMON_PATH = KLIPPER_PATH / "common"
-PINMAP_PATH = KLIPPER_PATH / "board_pinmap"
+PINMAP_PATH = COMMON_PATH / "board_pinmap"
 
 FGF_PATH = KLIPPER_PATH / "fgf"
 FFF_PATH = KLIPPER_PATH / "fff"

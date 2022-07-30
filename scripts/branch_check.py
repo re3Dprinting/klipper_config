@@ -1,7 +1,6 @@
 from git import Repo
 from pathlib import Path
 
-MASTER_BRANCH_VALID = {"stable", "develop"}
 KLIPPER_BRANCH_MAP = {"stable": "master", "develop": "develop"}
 MOONRAKER_BRANCH_MAP = {"stable": "master", "develop": "develop"}
 KLIPPER_CONFIG_BRANCH_MAP = {"stable": "", "develop": "-develop"}
