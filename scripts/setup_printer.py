@@ -4,6 +4,8 @@ import os
 import subprocess
 from pathlib import Path
 
+from utils import add_template_file, is_valid_path
+
 klipper_scripts = Path(__file__).parent.resolve()
 KLIPPER_PATH = klipper_scripts.parent
 COMMON_PATH = KLIPPER_PATH / "common"
@@ -28,16 +30,6 @@ THEME_PATH = KLIPPER_PATH / ".theme"
 #add if doesnt exist - wifi_setup.cfg
 
 #overwrite - moonraker.cfg check git hash for correct moonraker.cfg
-
-def add_template_file(template_file, add_file, replace=False):
-    if not is_valid_path(template_file):
-        return
-    elif not replace and Path(add_file).exists():
-        print("{} exists! skipping...".format(add_file))
-        return
-    shutil.copyfile(template_file, add_file)
-    print("Adding/Overwriting {}".format(add_file))
-
 
 def add_platform_specific(platform, board, platform_path):
     platform_file = "{}_{}.cfg".format(board, platform)
@@ -69,12 +61,6 @@ def add_theme(theme_path):
     for theme_file in theme_path.iterdir():
         generate_file = THEME_PATH / theme_file.name
         add_template_file(theme_file, generate_file, True)
-
-def is_valid_path(path):
-    if not path.exists():
-        print("{} does not exist!".format(path))
-        return False
-    return True
 
 def setup_printer(deposition_type, board, platform):
     deposition_type_path = FGF_PATH if deposition_type == "fgf" else FFF_PATH

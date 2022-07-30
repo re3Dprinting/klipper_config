@@ -6,9 +6,9 @@ import os
 import configparser
 from pathlib import Path
 
-import setup_printer
-from setup_printer import add_template_file, COMMON_PATH
+from setup_printer import COMMON_PATH, setup_printer
 from branch_check import moonraker_klipper_branch_check
+from utils import add_template_file, validate_and_return_config_param, check_network_availability
 
 url = "http://localhost"
 home_path = Path(__file__).parent.resolve().parent.parent
@@ -57,15 +57,6 @@ def reload_ui():
         body = {"namespace": "mainsail", "key": name, "value": defaults[name]}
         post_response = requests.post(post_url, json=body)
         print(post_response.text)
-    
-def check_network_availability():
-    try:
-        request = requests.get("http://www.google.com", timeout=5)
-        print("Network Available")
-        return True
-    except:
-        print("Network Unavailable, skipping dependency checking")
-        return False
 
 def reboot_services():
     os.system("service moonraker restart")
@@ -91,21 +82,13 @@ def main():
         return
     
     # Validate board type
-    board = printer_config.get("board_type", "")
-    valid_board = ["azteeg", "archimajor"]
-    if board not in valid_board:
-        print("WARN: Invalid board type in master.cfg, defaulting to archimajor")
-        board = "archimajor"
-    
+    board = validate_and_return_config_param(field="board_type", config=printer_config, valid_selections=["azteeg", "archimajor"], default="archimajor")
+
     #Validate platform type
-    platform = printer_config.get("platform_type", "")
-    valid_platform = ["regular", "xlt", "terabot"]
-    if platform not in valid_platform:
-        print("Invalid platform type in master.cfg, defaulting to regular")
-        platform = "regular"
+    platform = validate_and_return_config_param(field="platform_type", config=printer_config, valid_selections=["regular", "xlt", "terabot"], default="regular")
 
     print("Setting up printer as a {} {} {} machine".format(deposition_type, board, platform))
-    setup_printer.setup_printer(deposition_type, board, platform)
+    setup_printer(deposition_type, board, platform)
 
     #Validate Klipper Moonraker Branch Definition
     klipper_moonraker_config = master_config["klipper_moonraker"]
