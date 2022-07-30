@@ -11,13 +11,7 @@ klipper_path = home_path / "klipper"
 moonraker_path = home_path / "moonraker"
 klipper_config_path = home_path / "klipper_config"
 
-def moonraker_klipper_branch_check(master_config):
-    branch = master_config.get("branch", fallback="stable")
-    print("Master Config Branch set to " + branch)
-    if branch not in MASTER_BRANCH_VALID: 
-        print("\t" +branch+ " is invalid, defaulting to stable")
-        branch = "stable"
-
+def moonraker_klipper_branch_check(branch):
     target_klipper_branch = KLIPPER_BRANCH_MAP.get(branch)
     target_moonraker_branch = MOONRAKER_BRANCH_MAP.get(branch)
     print("Configuring klipper repo to " + target_klipper_branch)

@@ -4,7 +4,6 @@ import requests
 import json
 import os
 import configparser
-import subprocess
 from pathlib import Path
 
 import setup_printer
@@ -108,16 +107,20 @@ def main():
     print("Setting up printer as a {} {} {} machine".format(deposition_type, board, platform))
     setup_printer.setup_printer(deposition_type, board, platform)
 
-    #Serial Setup
-    serial_out = subprocess.run([str(klipper_scripts / "get_serial.sh")], capture_output=True)
-    print(serial_out.stdout.decode("utf-8"))
-    
+    #Validate Klipper Moonraker Branch Definition
+    klipper_moonraker_config = master_config["klipper_moonraker"]
+    klipper_moonraker_branch = klipper_moonraker_config.get("branch", "")
+
+    print("Master Config Branch set to " + klipper_moonraker_branch)
+    if klipper_moonraker_branch not in {"stable", "develop"}: 
+        print("\t" + klipper_moonraker_branch + " is invalid, defaulting to stable")
+        klipper_moonraker_branch = "stable"
+
     #Block until moonraker system service comes up. 
     wait_on_moonraker()
     if check_network_availability():
-        moonraker_klipper_branch_check(master_config=master_config)
+        moonraker_klipper_branch_check(klipper_moonraker_branch)
 
-    setup_printer.main()
     reload_ui()
     reboot_services()
 

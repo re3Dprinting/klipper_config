@@ -1,6 +1,7 @@
 #!/bin/python3
 import shutil
 import os
+import subprocess
 from pathlib import Path
 
 klipper_scripts = Path(__file__).parent.resolve()
@@ -111,3 +112,7 @@ def setup_printer(deposition_type, board, platform):
     add_template_file(COMMON_PATH / "standalone.cfg", KLIPPER_PATH / "_standalone.cfg")
     add_template_file(COMMON_PATH / "wifi_setup.conf.tmpl", KLIPPER_PATH / "wifi_setup.conf")
     add_template_file(COMMON_PATH / "moonraker.conf.tmpl", KLIPPER_PATH / "moonraker.conf", True)
+
+    #Serial Setup
+    serial_out = subprocess.run([str(klipper_scripts / "get_serial.sh")], capture_output=True)
+    print(serial_out.stdout.decode("utf-8"))
