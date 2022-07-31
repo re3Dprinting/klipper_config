@@ -1,7 +1,6 @@
 #!/bin/python3
 import shutil
 import os
-import subprocess
 from pathlib import Path
 
 from utils import add_template_file, is_valid_path, validate_and_return_config_param
@@ -62,9 +61,7 @@ def add_theme(theme_path):
         generate_file = THEME_PATH / theme_file.name
         add_template_file(theme_file, generate_file, True)
 
-def common_setup_printer(deposition_type, board, platform):
-    deposition_type_path = FGF_PATH if deposition_type == "fgf" else FFF_PATH
-
+def common_setup_printer(deposition_type_path, board, platform):
     platform_path = deposition_type_path / "platform_specific"
     board_path = deposition_type_path / "board_specific"
     config_path = deposition_type_path / "config"
@@ -99,14 +96,14 @@ def common_setup_printer(deposition_type, board, platform):
     add_template_file(COMMON_PATH / "wifi_setup.conf.tmpl", KLIPPER_PATH / "wifi_setup.conf")
     add_template_file(COMMON_PATH / "moonraker.conf.tmpl", KLIPPER_PATH / "moonraker.conf", True)
 
-    #Serial Setup
-    serial_out = subprocess.run([str(klipper_scripts / "get_serial.sh")], capture_output=True)
-    print(serial_out.stdout.decode("utf-8"))
+def setup_fff_printer(printer_config, board, platform):
+    custom_path = FFF_PATH / "custom"
+    common_setup_printer(FFF_PATH, board, platform)
 
 def setup_fgf_printer(printer_config, board, platform):
-    common_setup_printer("fgf", board, platform)
+    custom_path = FGF_PATH / "custom"
+    common_setup_printer(FGF_PATH, board, platform)
 
     crammer_enabled = validate_and_return_config_param(field="crammer_enabled", config=printer_config, valid_selections=["true", "false"], default="false")
     if crammer_enabled == "true":
-        add_template_file( FGF_PATH / "custom" / "fgf_crammer.cfg", OUTPUT_PATH / "fgf_crammer.cfg", True)
-
+        add_template_file( custom_path / "fgf_crammer.cfg", OUTPUT_PATH / "fgf_crammer.cfg", True)

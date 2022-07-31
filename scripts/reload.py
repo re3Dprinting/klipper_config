@@ -4,6 +4,7 @@ import requests
 import json
 import os
 import configparser
+import subprocess
 from pathlib import Path
 
 from setup_printer import COMMON_PATH, common_setup_printer, setup_fgf_printer
@@ -91,7 +92,11 @@ def main():
     if deposition_type == "fgf":
         setup_fgf_printer(printer_config, board, platform)
     else:
-        common_setup_printer(deposition_type, board, platform)
+        setup_fff_printer(printer_config, board, platform)
+    
+    #Serial Setup
+    serial_out = subprocess.run([str(klipper_scripts / "get_serial.sh")], capture_output=True)
+    print(serial_out.stdout.decode("utf-8"))
 
     #Validate Klipper Moonraker Branch Definition
     klipper_moonraker_config = master_config["klipper_moonraker"]
