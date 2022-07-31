@@ -6,7 +6,7 @@ import os
 import configparser
 from pathlib import Path
 
-from setup_printer import COMMON_PATH, setup_printer
+from setup_printer import COMMON_PATH, common_setup_printer, setup_fgf_printer
 from branch_check import moonraker_klipper_branch_check
 from utils import add_template_file, validate_and_return_config_param, check_network_availability
 
@@ -88,7 +88,10 @@ def main():
     platform = validate_and_return_config_param(field="platform_type", config=printer_config, valid_selections=["regular", "xlt", "terabot"], default="regular")
 
     print("Setting up printer as a {} {} {} machine".format(deposition_type, board, platform))
-    setup_printer(deposition_type, board, platform)
+    if deposition_type == "fgf":
+        setup_fgf_printer(printer_config, board, platform)
+    else:
+        common_setup_printer(deposition_type, board, platform)
 
     #Validate Klipper Moonraker Branch Definition
     klipper_moonraker_config = master_config["klipper_moonraker"]
