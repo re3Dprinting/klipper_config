@@ -7,7 +7,7 @@ import configparser
 import subprocess
 from pathlib import Path
 
-from setup_printer import COMMON_PATH, common_setup_printer, setup_fgf_printer
+from setup_printer import COMMON_PATH, common_setup_printer, setup_fgf_printer, setup_fff_printer
 from branch_check import moonraker_klipper_branch_check
 from utils import add_template_file, validate_and_return_config_param, check_network_availability
 
