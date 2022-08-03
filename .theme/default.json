@@ -3,26 +3,6 @@
         "direction": "shell",
         "entryStyle": "compact"
     },
-    "control": {
-        "style": "cross",
-        "selectedCrossStep": 3,
-        "extruder": {
-            "feedamount": 25,
-            "feedrate": 5
-        },
-        "reverseZ": true
-    },
-    "gcodefiles": {
-        "countPerPage": 10,
-        "sortBy": "modified",
-        "sortDesc": true,
-        "showHiddenFiles": false,
-        "showPrintedFiles": true,
-        "hideMetadataColums": [
-            "filament_total",
-            "slicer"
-        ]
-    },
     "dashboard": {
         "widescreenLayout3": [
             {
@@ -30,7 +10,7 @@
                 "visible": true
             },
             {
-                "name": "tools",
+                "name": "temperature",
                 "visible": true
             },
             {
@@ -76,7 +56,7 @@
                 "visible": true
             },
             {
-                "name": "tools",
+                "name": "temperature",
                 "visible": true
             },
             {
@@ -150,7 +130,7 @@
                 "visible": true
             },
             {
-                "name": "tools",
+                "name": "temperature",
                 "visible": true
             },
             {
@@ -172,7 +152,7 @@
                 "visible": false
             },
             {
-                "name": "tools",
+                "name": "temperature",
                 "visible": true
             },
             {
@@ -208,9 +188,22 @@
                 "visible": true
             }
         ],
-        "nonExpandPanels": [
-            "webcam-panel",
-            "pressure-advance-settings-subpanel"
+        "nonExpandPanels": {
+            "widescreen": [
+                "webcam-panel",
+                "pressure-advance-settings-subpanel"
+            ]
+        }
+    },
+    "gcodefiles": {
+        "countPerPage": 10,
+        "sortBy": "modified",
+        "sortDesc": true,
+        "showHiddenFiles": false,
+        "showPrintedFiles": true,
+        "hideMetadataColums": [
+            "filament_total",
+            "slicer"
         ]
     },
     "gcodeViewer": {
@@ -220,7 +213,22 @@
         "showTravelMoves": true,
         "transparency": true,
         "voxelMode": false,
-        "forceLineRendering": true
+        "forceLineRendering": true,
+        "klipperCache": {
+            "kinematics": "cartesian",
+            "axis_maximum": [
+                565,
+                750,
+                765,
+                0
+            ],
+            "axis_minimum": [
+                0,
+                0,
+                0,
+                0
+            ]
+        }
     },
     "macros": {
         "mode": "expert",
@@ -423,7 +431,7 @@
                     },
                     {
                         "pos": 4,
-                        "name": "CRAMMER_MOVE_DEBUG",
+                        "name": "CRAMMER_MOVE",
                         "color": "warning",
                         "showInStandby": true,
                         "showInPrinting": true,
@@ -432,6 +440,16 @@
                 ]
             }
         }
+    },
+    "notifications": {
+        "dismiss": [
+            {
+                "id": "Moonraker/v0.7.1-486",
+                "category": "dependency",
+                "type": "reboot",
+                "date": 1659534893247
+            }
+        ]
     },
     "presets": {
         "presets": {}
@@ -484,6 +502,9 @@
                 },
                 "extruder1": {
                     "color": "#8E379D"
+                },
+                "extruder2": {
+                    "color": "#569D37"
                 }
             }
         },
@@ -491,5 +512,14 @@
             "showHiddenFiles": false,
             "countPerPage": -1
         }
+    },
+    "control": {
+        "style": "cross",
+        "selectedCrossStep": 3,
+        "extruder": {
+            "feedamount": 50,
+            "feedrate": 5
+        },
+        "reverseZ": true
     }
 }
