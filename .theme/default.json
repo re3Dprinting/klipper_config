@@ -3,6 +3,15 @@
         "direction": "shell",
         "entryStyle": "compact"
     },
+    "control": {
+        "style": "cross",
+        "selectedCrossStep": 3,
+        "extruder": {
+            "feedamount": 50,
+            "feedrate": 5
+        },
+        "reverseZ": true
+    },
     "dashboard": {
         "widescreenLayout3": [
             {
@@ -320,6 +329,14 @@
                         "showInStandby": true,
                         "showInPrinting": true,
                         "showInPause": true
+                    },
+                    {
+                        "pos": 11,
+                        "name": "TPU_HEATERS",
+                        "color": "success",
+                        "showInStandby": true,
+                        "showInPrinting": true,
+                        "showInPause": true
                     }
                 ]
             },
@@ -512,14 +529,5 @@
             "showHiddenFiles": false,
             "countPerPage": -1
         }
-    },
-    "control": {
-        "style": "cross",
-        "selectedCrossStep": 3,
-        "extruder": {
-            "feedamount": 50,
-            "feedrate": 5
-        },
-        "reverseZ": true
     }
 }
