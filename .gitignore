@@ -1,6 +1,8 @@
-_*.cfg
 moonraker.conf
 wifi_setup.conf
+/standalone.cfg
+/macros.cfg
+/save_variables.cfg
 .master.cfg
 .theme/
 

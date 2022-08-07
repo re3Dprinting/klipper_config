@@ -91,8 +91,9 @@ def common_setup_printer(deposition_type_path, board, platform):
     add_theme(theme_path)
 
     #Common Files Setup
-    add_template_file(COMMON_PATH / "save_variables.cfg", KLIPPER_PATH / "_save_variables.cfg")
-    add_template_file(COMMON_PATH / "standalone.cfg", KLIPPER_PATH / "_standalone.cfg")
+    add_template_file(COMMON_PATH / "save_variables.cfg", KLIPPER_PATH / "save_variables.cfg")
+    add_template_file(COMMON_PATH / "standalone.cfg", KLIPPER_PATH / "standalone.cfg")
+    add_template_file(COMMON_PATH / "macros.cfg", KLIPPER_PATH / "macros.cfg")
     add_template_file(COMMON_PATH / "wifi_setup.conf.tmpl", KLIPPER_PATH / "wifi_setup.conf")
     add_template_file(COMMON_PATH / "moonraker.conf.tmpl", KLIPPER_PATH / "moonraker.conf", True)
 
