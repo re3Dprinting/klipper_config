@@ -13,11 +13,12 @@ from utils import add_template_file, validate_and_return_config_param, check_net
 
 url = "http://localhost"
 home_path = Path(__file__).parent.resolve().parent.parent
-
-klipper_scripts = Path(__file__).parent.resolve()
 klipper_config_path = home_path / "klipper_config"
+
+klipper_scripts = klipper_config_path / "src"
 fgf_config_path = klipper_config_path / "fgf"
 fff_config_path = klipper_config_path / "fff"
+THEME_PATH = klipper_config_path / ".theme"
 
 def read_master_config():
     master_config_path = klipper_config_path / ".master.cfg"
@@ -40,7 +41,7 @@ def wait_on_moonraker():
 
 #Reloading UI configuration
 def reload_ui():
-    default_json_file = klipper_config_path / ".theme/default.json"
+    default_json_file = THEME_PATH / "default.json"
     with open(default_json_file) as f:
         defaults = json.load(f)
     namespaces = [name for name in defaults]

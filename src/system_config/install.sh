@@ -13,7 +13,7 @@ if [ "$EUID" -ne 0 ]
 fi
 
 PWD="$(cd "$(dirname "$0")" && pwd)"
-HOME=$PWD/../..
+HOME=$PWD/../../..
 
 function check_and_overwrite {
     overwrite_file=$1
@@ -82,7 +82,7 @@ git reset --hard origin/master
 
 # Initial run of setup_printer.py to generate .master.cfg file
 cd $HOME/klipper_config
-./scripts/setup_printer.py
+./src/setup_printer.py
 EOF
 
 #Install os packages

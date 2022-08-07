@@ -1,10 +1,10 @@
 .PHONY: build
 
 build: 
-	./scripts/reload.py
+	./reload.py
 
 clean: 
-	git clean -fXd
+	cd .. && git clean -fXd
 
 clean-dry: 
-	git clean -fXnd
+	cd .. && git clean -fXnd

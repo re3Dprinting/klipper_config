@@ -5,17 +5,16 @@ from pathlib import Path
 
 from utils import add_template_file, is_valid_path, validate_and_return_config_param
 
-klipper_scripts = Path(__file__).parent.resolve()
-KLIPPER_PATH = klipper_scripts.parent
-COMMON_PATH = KLIPPER_PATH / "common"
+SRC_PATH = Path(__file__).parent.resolve()
+COMMON_PATH = SRC_PATH / "common"
 PINMAP_PATH = COMMON_PATH / "board_pinmap"
 
-FGF_PATH = KLIPPER_PATH / "fgf"
-FFF_PATH = KLIPPER_PATH / "fff"
-board_path = KLIPPER_PATH / "board_specific"
+FGF_PATH = SRC_PATH / "fgf"
+FFF_PATH = SRC_PATH / "fff"
 
-OUTPUT_PATH = KLIPPER_PATH / "build"
-THEME_PATH = KLIPPER_PATH / ".theme"
+KLIPPER_CONFIG_PATH = SRC_PATH.parent
+OUTPUT_PATH = KLIPPER_CONFIG_PATH / "build"
+THEME_PATH = KLIPPER_CONFIG_PATH / ".theme"
 
 #attempt to generate master.cfg from master.cfg.tmpl
 #read in master.cfg
@@ -91,11 +90,11 @@ def common_setup_printer(deposition_type_path, board, platform):
     add_theme(theme_path)
 
     #Common Files Setup
-    add_template_file(COMMON_PATH / "save_variables.cfg", KLIPPER_PATH / "save_variables.cfg")
-    add_template_file(COMMON_PATH / "standalone.cfg", KLIPPER_PATH / "standalone.cfg")
-    add_template_file(COMMON_PATH / "macros.cfg", KLIPPER_PATH / "macros.cfg")
-    add_template_file(COMMON_PATH / "wifi_setup.conf.tmpl", KLIPPER_PATH / "wifi_setup.conf")
-    add_template_file(COMMON_PATH / "moonraker.conf.tmpl", KLIPPER_PATH / "moonraker.conf", True)
+    add_template_file(COMMON_PATH / "save_variables.cfg", KLIPPER_CONFIG_PATH / "save_variables.cfg")
+    add_template_file(COMMON_PATH / "standalone.cfg", KLIPPER_CONFIG_PATH / "standalone.cfg")
+    add_template_file(COMMON_PATH / "macros.cfg", KLIPPER_CONFIG_PATH / "macros.cfg")
+    add_template_file(COMMON_PATH / "wifi_setup.conf.tmpl", KLIPPER_CONFIG_PATH / "wifi_setup.conf")
+    add_template_file(COMMON_PATH / "moonraker.conf.tmpl", KLIPPER_CONFIG_PATH / "moonraker.conf", True)
 
 def setup_fff_printer(printer_config, board, platform):
     custom_path = FFF_PATH / "custom"
