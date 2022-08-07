@@ -3,8 +3,8 @@ Description=Script that runs periodically and scans for changes in the /etc/wpa_
 
 [Service]
 User=root
-WorkingDirectory=/home/pi/gigabot_touchscreen_config/wifi
-ExecStart=/usr/bin/bash /home/pi/gigabot_touchscreen_config/wifi/autoconnect_wifi.sh
+WorkingDirectory=/home/pi/klipper_config/system_config_config/wifi
+ExecStart=/usr/bin/bash /home/pi/klipper_config/system_config_config/wifi/autoconnect_wifi.sh
 
 [Install]
 WantedBy=multi-user.target
