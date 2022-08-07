@@ -2,7 +2,7 @@
 
 PWD="$(cd "$(dirname "$0")" && pwd)"
 KLIPPER_CONFIG_PWD=$PWD/..
-TMPL_PWD=$KLIPPER_CONFIG_PWD/common
+TMPL_PWD=$PWD/common
 
 AZTEEG_SERIAL="usb-FTDI_FT"
 ARCHIM_SERIAL="Klipper_sam3x8e"
