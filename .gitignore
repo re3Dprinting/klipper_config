@@ -3,8 +3,8 @@ wifi_setup.conf
 /standalone.cfg
 /macros.cfg
 /save_variables.cfg
+/.theme
 .master.cfg
-.theme/
 
 # Python Ignores
 __pycache__/
