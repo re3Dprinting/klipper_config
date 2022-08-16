@@ -3,7 +3,7 @@ Description=Script that runs periodically and scans for changes in the /etc/wpa_
 
 [Service]
 User=root
-WorkingDirectory=/home/pi/klipper_config/system_config/wifi
+WorkingDirectory=/home/pi/klipper_config/src/system_config/wifi
 ExecStart=/bin/sh -c '/usr/bin/bash /home/pi/klipper_config/src/system_config/wifi/autoconnect_wifi.sh > /home/pi/klipper_logs/scan_wifi.log 2>&1'
 
 [Install]
