@@ -27,6 +27,7 @@ function check_connection {
     ping -c 5 8.8.8.8 >> /dev/null
     if [[ $? -eq  0 ]]; then
         echo "Connected to Internet!"
+        ./scan_wifi.sh
         exit 0
     fi
 }
@@ -39,6 +40,7 @@ do
     check_connection
 
     echo "Not connected to Internet!"
+    ./scan_wifi.sh
     echo "Checking if wpa_supplicant.conf can be updated with klipper_conf/wifi_setup.conf"
     # Grab the wifi ssid and password from wpa_supplicant
     grep_string $WPA_CONF_PATH "ssid=" "exit"
@@ -78,5 +80,5 @@ do
 
     echo
     
-    sleep 5s
+    sleep 3s
 done

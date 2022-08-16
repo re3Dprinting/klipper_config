@@ -4,6 +4,7 @@ wifi_setup.conf
 /macros.cfg
 /save_variables.cfg
 /.theme
+/wifi_networks
 .master.cfg
 
 # Python Ignores
