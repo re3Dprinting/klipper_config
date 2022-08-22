@@ -1,27 +1,20 @@
 #!/usr/bin/python3
-import sys
 import requests
 import json
 import os
 import configparser
 import subprocess
-from pathlib import Path
 
 from setup_printer import COMMON_PATH, common_setup_printer, setup_fgf_printer, setup_fff_printer
 from branch_check import moonraker_klipper_branch_check
-from utils import add_template_file, validate_and_return_config_param, check_network_availability
+from utils import *
+from enums import *
+from paths import *
 
 url = "http://localhost"
-home_path = Path(__file__).parent.resolve().parent.parent
-klipper_config_path = home_path / "klipper_config"
-
-klipper_scripts = klipper_config_path / "src"
-fgf_config_path = klipper_config_path / "fgf"
-fff_config_path = klipper_config_path / "fff"
-THEME_PATH = klipper_config_path / ".theme"
 
 def read_master_config():
-    master_config_path = klipper_config_path / ".master.cfg"
+    master_config_path = KLIPPER_CONFIG_PATH / ".master.cfg"
     if not master_config_path.exists():
         print(".master.cfg is missing! autogenerating to default")
         add_template_file(COMMON_PATH / "master.cfg", master_config_path)
@@ -68,35 +61,30 @@ def reboot_services():
 def main():
     master_config = read_master_config()
 
-    #Determine deposition type
-    if "fff" in master_config:
-        deposition_type = "fff"
-        printer_config = master_config["fff"]
-    elif "fgf" in master_config:
-        deposition_type = "fgf"
-        printer_config = master_config["fgf"]
-
+    # DEPOSITION TYPE DETERMINATION
+    deposition_type = FFF if FFF in master_config else FGF
+    
     if not deposition_type:
         print("fff or fgf section is not defined in master.cfg. Please enable one of the sections.")
         return
-    elif not printer_config:
+
+    printer_config = master_config[deposition_type]
+    if not printer_config:
         print("Configuration section for {deposition_type} does not exist!")
         return
     
-    # Validate board type
+    # FIELD VALIDATION FOR DEPOSITION TYPE
     board = validate_and_return_config_param(field="board_type", config=printer_config, valid_selections=["azteeg", "archimajor"], default="archimajor")
-
-    #Validate platform type
     platform = validate_and_return_config_param(field="platform_type", config=printer_config, valid_selections=["regular", "xlt", "terabot"], default="regular")
 
     print("Setting up printer as a {} {} {} machine".format(deposition_type, board, platform))
-    if deposition_type == "fgf":
+    if deposition_type is FGF:
         setup_fgf_printer(printer_config, board, platform)
-    else:
+    elif deposition_type is FFF:
         setup_fff_printer(printer_config, board, platform)
     
-    #Serial Setup
-    serial_out = subprocess.run([str(klipper_scripts / "get_serial.sh")], capture_output=True)
+    # SERIAL FILE GENERATION
+    serial_out = subprocess.run([str(SRC_PATH / "get_serial.sh")], capture_output=True)
     print(serial_out.stdout.decode("utf-8"))
 
     #Validate Klipper Moonraker Branch Definition

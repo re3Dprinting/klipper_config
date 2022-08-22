@@ -1,20 +1,9 @@
 #!/bin/python3
 import shutil
 import os
-from pathlib import Path
 
-from utils import add_template_file, is_valid_path, validate_and_return_config_param
-
-SRC_PATH = Path(__file__).parent.resolve()
-COMMON_PATH = SRC_PATH / "common"
-PINMAP_PATH = COMMON_PATH / "board_pinmap"
-
-FGF_PATH = SRC_PATH / "fgf"
-FFF_PATH = SRC_PATH / "fff"
-
-KLIPPER_CONFIG_PATH = SRC_PATH.parent
-OUTPUT_PATH = KLIPPER_CONFIG_PATH / "build"
-THEME_PATH = KLIPPER_CONFIG_PATH / ".theme"
+from utils import *
+from paths import *
 
 #attempt to generate master.cfg from master.cfg.tmpl
 #read in master.cfg
