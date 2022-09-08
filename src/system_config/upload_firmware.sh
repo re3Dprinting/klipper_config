@@ -1,4 +1,6 @@
 #!/bin/bash 
 
+PWD="$(cd "$(dirname "$0")" && pwd)"
+
 export LC_ALL=C
-./upload_firmware.exp
+$PWD/upload_firmware.exp
