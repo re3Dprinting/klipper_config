@@ -88,7 +88,7 @@ def main():
     print(serial_out.stdout.decode("utf-8"))
 
     #Validate Klipper Moonraker Branch Definition
-    klipper_moonraker_config = master_config["klipper_moonraker"]
+    klipper_moonraker_config = master_config["klipper_moonraker"] if "klipper_moonraker" in master_config else {}
     klipper_moonraker_branch = klipper_moonraker_config.get("branch", "")
 
     print("Master Config Branch set to " + klipper_moonraker_branch)
@@ -97,7 +97,7 @@ def main():
         klipper_moonraker_branch = "stable"
 
     #Block until moonraker system service comes up. 
-    wait_on_moonraker()
+    # wait_on_moonraker()
     if check_network_availability():
         moonraker_klipper_branch_check(klipper_moonraker_branch)
 
