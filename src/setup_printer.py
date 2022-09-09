@@ -95,4 +95,4 @@ def setup_fgf_printer(printer_config, board, platform):
 
     crammer_enabled = validate_and_return_config_param(field="crammer_enabled", config=printer_config, valid_selections=["true", "false"], default="false")
     if crammer_enabled == "true":
-        add_template_file( custom_path / "fgf_crammer.cfg", OUTPUT_PATH / "fgf_crammer.cfg", True)
+        add_template_file( custom_path / "fgf_crammer.cfg", OUTPUT_PATH / "fgf_crammer.cfg", False)
