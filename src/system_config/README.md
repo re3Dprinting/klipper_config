@@ -55,3 +55,25 @@ Clone the repo onto a base image of FullPageOs
 ```git clone https://github.com/plloppii/gigabot_touchscreen_config ```
 Run the install script
 ```./gigabot_touchscreen_config/install.sh```
+
+### Kernal Module Compilation for AC1200 USB Wifi Antenna
+```
+sudo apt update
+sudo apt upgrade
+
+sudo apt install -y bc git flex bison libssl-dev libncurses5-dev
+sudo wget https://raw.githubusercontent.com/RPi-Distro/rpi-source/master/rpi-source -O /usr/local/bin/rpi-source && sudo chmod +x /usr/local/bin/rpi-source && /usr/local/bin/rpi-source -q --tag-update
+rpi-source
+
+sudo git clone https://github.com/cilynx/rtl88x2bu
+cd rtl8822bu
+sudo nano Makefile
+
+# Update lines 100 and 101 to this and save the file:
+# CONFIG_PLATFORM_I386_PC = n
+# CONFIG_PLATFORM_ARM_RPI = y -->
+
+sudo make
+sudo make install
+sudo reboot
+```
