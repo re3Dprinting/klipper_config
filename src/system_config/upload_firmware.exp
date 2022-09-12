@@ -59,7 +59,6 @@ expect -exact "(B\[0;1m\[37m\[44m( ) SAM3/SAM4 (Due and Duet)\[1;38H\[39;4
 send -- "\r"
 expect -exact "\[K\[1;6H\[39;49m(B\[m"
 send -- "q"
-expect -exact "\[?1h=\[9;86H(B\[0;1m\[30m\[43m          Quit           \[10;86H (B\[0m\[37m\[40m\[23X\[10;110H(B\[0;1m\[30m\[43m \[11;86H (B\[0m\[37m\[40m  Save configuration?  (B\[0;1m\[30m\[43m \[12;86H (B\[0m\[37m\[40m\[23X\[12;110H(B\[0;1m\[30m\[43m \[13;86H (B\[0m\[37m\[40m (Y)es  (N)o  (C)ancel (B\[0;1m\[30m\[43m \[14;86H (B\[0m\[37m\[40m\[23X\[14;110H(B\[0;1m\[30m\[43m \[15;86H\[25X\[9;100H\[39;49m(B\[m"
 send -- "y"
 expect -exact "\[96m###### Please select:\[39m "
 send -- "1\r"
