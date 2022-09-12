@@ -77,3 +77,24 @@ sudo make
 sudo make install
 sudo reboot
 ```
+
+### Shrinking Pi Image on MacOs
+
+```
+# ON PI - Zero out the empty space in the filesystem to make the image more compressible.
+dd if=/dev/zero of=/tmp/zero.out bs=1024k
+rm /tmp/zero.out
+
+# ON PI - Halt the operating system and transfer the microSD card to a Linux or Mac computer.
+sudo halt -p
+
+# Dump and compress the operating system image.
+sudo dd if=/dev/sdd of=ts-raspbian-base-yyyy.mm.dd.img
+bzip2 -v -9 ts-raspbian-base-yyyy.mm.dd.img
+
+# Using PiShrink to Compress Image
+docker run --privileged=true --rm \
+    --volume $(pwd):/workdir \
+    mgomesborges/pishrink \
+    pishrink -Zv IMAGE_NAME.img NEW-IMAGE_NAME.img
+```
