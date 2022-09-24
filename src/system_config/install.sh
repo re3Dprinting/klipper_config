@@ -94,6 +94,11 @@ pip3 install GitPython
 #Set up usbmount service
 bash $PWD/usb/setup-usbmount.sh
 
+#Set up lightdm_watchman service
+sudo cp $PWD/display/lightdm_watchman.service /etc/systemd/system/lightdm_watchman.service
+sudo chmod 644 /etc/systemd/system/lightdm_watchman.service
+sudo systemctl enable lightdm_watchman.service
+
 #Set up wifi scanning service 
 sudo cp $PWD/wifi/scan_wifi.service /etc/systemd/system/scan_wifi.service
 sudo chmod 644 /etc/systemd/system/scan_wifi.service
