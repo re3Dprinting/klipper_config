@@ -28,11 +28,17 @@ class VersionManager:
         virtual_keyboard_hash = self.virtual_keyboard_git_repo.head.object.hexsha
 
         if klipper_hash != target_klipper_hash:
-            print(f'WARN: klipper Repo hash does not match target hash! {klipper_hash} != {target_klipper_hash}')
+            print(f'WARN: klipper repo hash does not match target hash! {klipper_hash} != {target_klipper_hash}')
+            print(f'WARN: Resetting klipper repo with "git reset --hard {target_klipper_hash}"')
+            self.klipper_git_repo.git.reset('--hard', target_klipper_hash)
         if moonraker_hash != target_moonraker_hash:
-            print(f'WARN: moonraker Repo hash does not match target hash! {moonraker_hash} != {target_moonraker_hash}')
+            print(f'WARN: moonraker hash does not match target hash! {moonraker_hash} != {target_moonraker_hash}')
+            print(f'WARN: Resetting moonraker repo with "git reset --hard {target_moonraker_hash}"')
+            self.moonraker_git_repo.git.reset('--hard', target_moonraker_hash)
         if virtual_keyboard_hash != target_virtual_keyboard_hash:
             print(f'WARN: virtual_keyboard Repo hash does not match target hash! {virtual_keyboard_hash} != {target_virtual_keyboard_hash}')
+            print(f'WARN: Resetting virtual_keyboard repo with "git reset --hard {target_virtual_keyboard_hash}"')
+            self.virtual_keyboard_git_repo.git.reset('--hard', virtual_keyboard_hash)
 
 
     def set_custom_branch(self, master_config):
