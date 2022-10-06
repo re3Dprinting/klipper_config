@@ -508,7 +508,7 @@
             "countPerPage": 50,
             "sortBy": "modified",
             "sortDesc": true,
-            "showHiddenFiles": true
+            "showHiddenFiles": false
         },
         "tempchart": {
             "autoscale": true,

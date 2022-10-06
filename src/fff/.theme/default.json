@@ -500,7 +500,7 @@
             "countPerPage": 50,
             "sortBy": "filename",
             "sortDesc": false,
-            "showHiddenFiles": true
+            "showHiddenFiles": false
         },
         "tempchart": {
             "autoscale": true,

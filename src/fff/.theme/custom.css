@@ -1,19 +1,6 @@
-/* @font-face {
-    font-family: Lato;
-    src:url("Lato-Regular.ttf");
-}
-
-.v-application {
-  font-family: 'Lato', sans-serif;
-}
-
-.subheading {
-    font-size: 1rem
-} */
-
 /* @import url("hide_buttons.css"); */
 /* @import url("change_icons.css"); */
-
+@import url("update_manager.css")
 
 /* Top Toolbar color */
 
