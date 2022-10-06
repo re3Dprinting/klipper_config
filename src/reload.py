@@ -6,7 +6,7 @@ import configparser
 import subprocess
 
 from setup_printer import COMMON_PATH, common_setup_printer, setup_fgf_printer, setup_fff_printer
-from branch_check import moonraker_klipper_branch_check
+from branch_check import VersionManager
 from utils import *
 from enums import *
 from paths import *
@@ -91,21 +91,23 @@ def main():
     klipper_moonraker_config = master_config["klipper_moonraker"] if "klipper_moonraker" in master_config else {}
     klipper_moonraker_branch = klipper_moonraker_config.get("branch", "")
 
-    print("Master Config Branch set to " + klipper_moonraker_branch)
+    print(f'INFO Master Config Branch set to "{klipper_moonraker_branch}"')
     if klipper_moonraker_branch not in {"stable", "develop"}: 
-        print("\t" + klipper_moonraker_branch + " is invalid, defaulting to stable")
+        print(f'WARN: \t "{klipper_moonraker_branch}" is invalid, defaulting to stable')
         klipper_moonraker_branch = "stable"
 
     #Check our network availability and validate klipper/moonraker branches
     if check_network_availability():
-        moonraker_klipper_branch_check(klipper_moonraker_branch)
+        v = VersionManager(klipper_moonraker_branch)
+        v.moonraker_klipper_branch_check()
+        v.validate_repository_hashes()
 
     #Check master config for ui_factory_reset option to factory reset UI components. 
     ui_regeneration = master_config["ui_regeneration"].get("enabled") if "ui_regeneration" in master_config else "true"
     if ui_regeneration != "false":
         reload_ui()
     else:
-        print("Skipping ui reload!")
+        print("INFO: UI Regeneration turned off! Skipping ui reload!")
     reboot_services()
 
 if __name__ == "__main__":

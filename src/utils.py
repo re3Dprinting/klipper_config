@@ -12,23 +12,23 @@ def validate_and_return_config_param(field, config, valid_selections, default):
 def check_network_availability():
     try:
         request = requests.get("http://www.google.com", timeout=5)
-        print("Network Available")
+        print("INFO: Network Available")
         return True
     except:
-        print("Network Unavailable, skipping dependency checking")
+        print("WARN: Network Unavailable, skipping dependency checking")
         return False
 
 def add_template_file(template_file, add_file, replace=False):
     if not is_valid_path(template_file):
         return
     elif not replace and Path(add_file).exists():
-        print("{} exists! skipping...".format(add_file))
+        print("INFO: {} exists! skipping...".format(add_file))
         return
     shutil.copyfile(template_file, add_file)
-    print("Adding/Overwriting {}".format(add_file))
+    print("INFO: Adding/Overwriting {}".format(add_file))
 
 def is_valid_path(path):
     if not path.exists():
-        print("{} does not exist!".format(path))
+        print("WARN: {} does not exist!".format(path))
         return False
     return True
