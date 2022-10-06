@@ -99,7 +99,6 @@ def main():
     #Check our network availability and validate klipper/moonraker branches
     if check_network_availability():
         v = VersionManager(klipper_moonraker_branch)
-        v.moonraker_klipper_branch_check()
         v.validate_repository_hashes()
 
     #Check master config for ui_factory_reset option to factory reset UI components. 

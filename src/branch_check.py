@@ -3,49 +3,17 @@ from pathlib import Path
 from paths import *
 import configparser
 
-KLIPPER_BRANCH_MAP = {"stable": "master", "develop": "develop"}
-MOONRAKER_BRANCH_MAP = {"stable": "master", "develop": "develop"}
-KLIPPER_CONFIG_BRANCH_MAP = {"stable": "", "develop": "-develop"}
-
 class VersionManager:
     def __init__(self, target_branch):
-        self.target_klipper_branch = KLIPPER_BRANCH_MAP.get(target_branch)
-        self.target_moonraker_branch = MOONRAKER_BRANCH_MAP.get(target_branch)
-        print("INFO: Configuring klipper repo to " + self.target_klipper_branch)
-        print("INFO: Configuring moonraker repo to " + self.target_moonraker_branch)
-
         print("INFO: Initializing repo objects...")
         self.klipper_git_repo = Repo(KLIPPER_PATH)
         self.moonraker_git_repo = Repo(MOONRAKER_PATH)
         self.virtual_keyboard_git_repo = Repo(VIRTUAL_KEYBOARD_PATH)
-    
 
-    def moonraker_klipper_branch_check(self):
         print("INFO: Fetching origin and pruning...")
         self.klipper_git_repo.remotes.origin.fetch(prune=True)
         self.moonraker_git_repo.remotes.origin.fetch(prune=True)
-
-        print("INFO: Checking if repos are dirty...")
-        klipper_repo_dirty = self.klipper_git_repo.is_dirty()
-        moonraker_repo_dirty = self.moonraker_git_repo.is_dirty()
-        print("\tKlipper -- {}".format(klipper_repo_dirty))
-        print("\tMoonraker -- {}".format(moonraker_repo_dirty))
-        if klipper_repo_dirty or moonraker_repo_dirty:
-            return False
-
-        # Check if branch exists
-        #TODO Actually check if the name matches by doing a .split("/")[-1]. 
-        for b in self.klipper_git_repo.remote().refs: 
-            if self.target_klipper_branch in b.name:
-                print("INFO: Klipper Target Branch exists...")
-        for b in self.moonraker_git_repo.remote().refs:
-            if self.target_moonraker_branch in b.name:
-                print("INFO: Moonraker Target Branch exists...")
-        
-        #Checkout Branch
-        self.klipper_git_repo.git.checkout(self.target_klipper_branch)
-        self.moonraker_git_repo.git.checkout(self.target_moonraker_branch)
-
+        self.virtual_keyboard_git_repo.remotes.origin.fetch(prune=True)
 
     def validate_repository_hashes(self):
         versions_config = configparser.ConfigParser(inline_comment_prefixes="#")
@@ -67,7 +35,7 @@ class VersionManager:
             print(f'WARN: virtual_keyboard Repo hash does not match target hash! {virtual_keyboard_hash} != {target_virtual_keyboard_hash}')
 
 
-    def klipper_config_branch_check(self, master_config):
+    def set_custom_branch(self, master_config):
         branch = master_config.get("branch", fallback="stable")
         print("Master Config Branch set to " + branch)
         if branch not in MASTER_BRANCH_VALID: 
@@ -83,7 +51,7 @@ class VersionManager:
         print("Configuring klipper_config repo to " + target_klipper_config_branch)
 
         print("Initializing repo objects...")
-        klipper_config_git_repo = Repo(klipper_config_path)
+        klipper_config_git_repo = Repo(KLIPPER_CONFIG_PATH)
 
         print("Fetching origin and pruning...")
         klipper_config_git_repo.remotes.origin.fetch(prune=True)
