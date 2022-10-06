@@ -96,12 +96,16 @@ def main():
         print("\t" + klipper_moonraker_branch + " is invalid, defaulting to stable")
         klipper_moonraker_branch = "stable"
 
-    #Block until moonraker system service comes up. 
-    # wait_on_moonraker()
+    #Check our network availability and validate klipper/moonraker branches
     if check_network_availability():
         moonraker_klipper_branch_check(klipper_moonraker_branch)
 
-    reload_ui()
+    #Check master config for ui_factory_reset option to factory reset UI components. 
+    ui_regeneration = master_config["ui_regeneration"].get("enabled") if "ui_regeneration" in master_config else "true"
+    if ui_regeneration != "false":
+        reload_ui()
+    else:
+        print("Skipping ui reload!")
     reboot_services()
 
 if __name__ == "__main__":
