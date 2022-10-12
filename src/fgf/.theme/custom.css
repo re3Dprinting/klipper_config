@@ -110,3 +110,20 @@
 .v-btn-toggle>.v-btn.v-btn {
 	border-radius: 8px;
 }
+
+/* Renaming heater bands */
+#page-container > div > div > div:nth-child(2) > div:nth-child(2) > div.v-card.v-sheet.theme--dark.panel.temperature-panel.mb-3.mb-md-6 > div > div:nth-child(1) > div > div > div > table > tbody > tr:nth-child(1) > td.name > span 
+{ display:none; }
+#page-container > div > div > div:nth-child(2) > div:nth-child(2) > div.v-card.v-sheet.theme--dark.panel.temperature-panel.mb-3.mb-md-6 > div > div:nth-child(1) > div > div > div > table > tbody > tr:nth-child(1) > td.name:after 
+{ content: "Bottom Heater"; }
+
+#page-container > div > div > div:nth-child(2) > div:nth-child(2) > div.v-card.v-sheet.theme--dark.panel.temperature-panel.mb-3.mb-md-6 > div > div:nth-child(1) > div > div > div > table > tbody > tr:nth-child(2) > td.name > span
+{ display:none; }
+#page-container > div > div > div:nth-child(2) > div:nth-child(2) > div.v-card.v-sheet.theme--dark.panel.temperature-panel.mb-3.mb-md-6 > div > div:nth-child(1) > div > div > div > table > tbody > tr:nth-child(2) > td.name:after 
+{ content: "Middle Heater"; }
+
+#page-container > div > div > div:nth-child(2) > div:nth-child(2) > div.v-card.v-sheet.theme--dark.panel.temperature-panel.mb-3.mb-md-6 > div > div:nth-child(1) > div > div > div > table > tbody > tr:nth-child(3) > td.name > span
+{ display:none; }
+#page-container > div > div > div:nth-child(2) > div:nth-child(2) > div.v-card.v-sheet.theme--dark.panel.temperature-panel.mb-3.mb-md-6 > div > div:nth-child(1) > div > div > div > table > tbody > tr:nth-child(3) > td.name:after 
+{ content: "Top Heater"; }
+
