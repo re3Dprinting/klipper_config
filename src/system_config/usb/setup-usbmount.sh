@@ -22,7 +22,9 @@ chmod 755 /etc/usbmount/umount.d/00_remove_model_symlink
 chmod 644 /etc/usbmount/usbmount.conf
 
 #Set PrivateMount to No in systemd-udevd.service
-cp $PWD/systemd-udevd.service /lib/systemd/system/systemd-udevd.service
+mkdir /etc/systemd/system/systemd-udevd.service.d
+cp $PWD/systemd-udevd.service /etc/systemd/system/systemd-udevd.service.d/00-usb-mount.conf
+
 chmod 644 /lib/systemd/system/systemd-udevd.service
 
 # We are going to mount the usb to the ~/gcode_files file of klipper.
