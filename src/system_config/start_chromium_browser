@@ -1,5 +1,7 @@
 #!/bin/bash
 
+xscreensaver -nosplash &
+
 # Standard behavior - runs chrome
 chromium-browser --kiosk --touch-events=enabled --disable-pinch --noerrdialogs --disable-session-crashed-bubble --disable-application-cache --simulate-outdated-no-au='Tue, 31 Dec 2099 23:59:59 GMT' --disable-component-update --overscroll-history-navigation=0 --disable-features=TranslateUI --app=$(/home/pi/scripts/get_url) --enable-features=OverlayScrollbar --load-extension=/home/pi/virtual_keyboard --no-first-run --force-device-scale-factor=1.1
 exit;
