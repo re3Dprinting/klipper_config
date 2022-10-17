@@ -96,3 +96,7 @@ def setup_fgf_printer(printer_config, board, platform):
     crammer_enabled = validate_and_return_config_param(field="crammer_enabled", config=printer_config, valid_selections=["true", "false"], default="false")
     if crammer_enabled == "true":
         add_template_file( custom_path / "fgf_crammer.cfg", OUTPUT_PATH / "fgf_crammer.cfg", False)
+
+    heater_bed_enabled = validate_and_return_config_param(field="heater_bed_enabled", config=printer_config, valid_selections=["true", "false"], default="true")
+    if heater_bed_enabled == "true":
+        add_template_file( custom_path / "fgf_heater_bed.cfg", OUTPUT_PATH / "fgf_heater_bed.cfg", False)
