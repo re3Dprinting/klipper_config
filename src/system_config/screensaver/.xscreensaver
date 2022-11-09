@@ -2,7 +2,7 @@
 # Written by xscreensaver-demo 5.42 for pi on Sun Oct 16 04:03:31 2022.
 # https://www.jwz.org/xscreensaver/
 
-timeout:	0:01:00
+timeout:	0:20:00
 cycle:		0:30:00
 lock:		False
 lockTimeout:	0:00:00
