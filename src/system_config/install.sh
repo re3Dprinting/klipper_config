@@ -84,7 +84,7 @@ cd $HOME/klipper_config
 EOF
 
 #Install os packages
-apt-get install xinput ripgrep nmap python3-pip -y
+apt-get install xinput ripgrep nmap python3-pip xscreensaver* -y
 
 #Install python packages
 pip3 install GitPython
@@ -93,6 +93,7 @@ pip3 install GitPython
 bash $PWD/usb/setup-usbmount.sh
 
 #Old screensaver 
+cp $PWD/screensaver/.xscreensaver $HOME
 
 #Set up lightdm_watchman service
 sudo cp $PWD/display/lightdm_watchman.service /etc/systemd/system/lightdm_watchman.service
