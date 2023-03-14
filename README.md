@@ -13,7 +13,13 @@ This repository is used to install additional OS dependencies and repositories t
 2. Input the flashed image into a raspberry pi, and ssh into the pi
 3. Run ```git clone --branch main https://github.com/Mitchell-Mashburn/klipper_config```
 4. Run ```sudo ./src/system_config/install.sh```. Wait for the installation to finish
-5. Once the installation finishes, you should be able to plug in the re3D Touchscreen and pull up the Mainsail interface
+5. Run ```sudo apt update```
+6. Run ```sudo apt upgrade```
+
+## Flashing Firmware
+
+1. Navigate to the kiauh folder ```cd kiauh```
+2. run ```
 
 ## More Details
 As stated above, there are many Fullpageos_modifications specific to getting the raspberry pi to display its interface on the HMTech Display.
