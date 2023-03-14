@@ -23,7 +23,8 @@ This repository is used to install additional OS dependencies and repositories t
 3. option 4 - advanced
 4. build + flash
 5. due/duet2, Sam3x8e - q to exit, save changes
-6. USB
+6. regular flashing method
+7. USB
 
 ## More Details
 As stated above, there are many Fullpageos_modifications specific to getting the raspberry pi to display its interface on the HMTech Display.
