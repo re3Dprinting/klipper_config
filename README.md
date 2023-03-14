@@ -11,8 +11,8 @@ This repository is used to install additional OS dependencies and repositories t
 
 1. Flash a SD card with FullPageOS using a image flasher such as the [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 2. Input the flashed image into a raspberry pi, and ssh into the pi
-3. Run ```git clone https://github.com/re3Dprinting/gigabot_touchscreen_config```
-4. Run ```sudo ./gigabot_touchscreen_config/install.sh```. Wait for the installation to finish
+3. Run ```git clone https://github.com/Mitchell-Mashburn/klipper_config```
+4. Run ```sudo ./src/system_config/install.sh```. Wait for the installation to finish
 5. Once the installation finishes, you should be able to plug in the re3D Touchscreen and pull up the Mainsail interface
 
 ## More Details
