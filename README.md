@@ -19,7 +19,11 @@ This repository is used to install additional OS dependencies and repositories t
 ## Flashing Firmware
 
 1. Navigate to the kiauh folder ```cd kiauh```
-2. run ```
+2. run ```./kiauh.sh```
+3. option 4 - advanced
+4. build + flash
+5. due/duet2, Sam3x8e - q to exit, save changes
+6. USB
 
 ## More Details
 As stated above, there are many Fullpageos_modifications specific to getting the raspberry pi to display its interface on the HMTech Display.
