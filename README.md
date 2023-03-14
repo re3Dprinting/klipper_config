@@ -2,14 +2,14 @@
 Klipper Configuration files for Gigabot 3D-Printers
 
 # Gigabot Touchscreen
-The Gigabot Touchscreen is built ontop of [FullPageOS](https://github.com/guysoft/FullPageOS)
+The Gigabot Touchscreen is built ontop of FullPageOS
 This CustomPiOS is a Raspbian image that displays a chromium webpage in full screen mode. 
 
 This repository is used to install additional OS dependencies and repositories to install the Klipper software stack ontop of FullPageOS.
 
 ## Installation
 
-1. Flash a SD card with FullPageOS using a image flasher such as the [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
+1. Flash a SD card with FullPageOS using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) (Other specific purpose OS)
 2. Input the flashed image into a raspberry pi, and ssh into the pi
 3. Run ```git clone --branch main https://github.com/Mitchell-Mashburn/klipper_config```
 4. Run ```sudo ./src/system_config/install.sh```. Wait for the installation to finish
