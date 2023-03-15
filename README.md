@@ -64,11 +64,6 @@ Get lightdm service status ```journalctl -u lightdm.service```
 ### Recording with autoexpect
 ```autoexpect -p ./kiauh/kiauh.sh```
 
-### Installation
-Clone the repo onto a base image of FullPageOs
-```git clone https://github.com/plloppii/gigabot_touchscreen_config ```
-Run the install script
-```./gigabot_touchscreen_config/install.sh```
 
 ### Kernal Module Compilation for AC1200 USB Wifi Antenna
 ```
