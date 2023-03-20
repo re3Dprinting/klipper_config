@@ -12,7 +12,7 @@ This repository is used to install additional OS dependencies and repositories t
 
 Download the latest release package in releases and follow the instructions in the attached pdf.
 
-## Installation
+## Manual Installation
 
 1. Flash a SD card with FullPageOS using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) (Other specific purpose OS)
 2. Input the flashed image into a raspberry pi, and ssh into the pi
