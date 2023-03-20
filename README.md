@@ -10,7 +10,7 @@ This repository is used to install additional OS dependencies and repositories t
 
 ## Easy Install From Release Image
 
-Download the latest release package in releases and follow the instructions in the attached pdf. 
+Download the latest release package in releases and follow the instructions in the attached pdf.
 
 ## Installation
 
