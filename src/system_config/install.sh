@@ -50,15 +50,15 @@ sudo -i -u pi bash << EOF
 whoami
 cd $HOME
 if [ ! -d "$HOME/kiauh" ] ; then
-    git clone https://github.com/plloppii/kiauh.git
+    git clone https://github.com/Mitchell-Mashburn/kiauh.git
 fi
 if [ ! -d "$HOME/virtual_keyboard" ] ; then
     git clone https://github.com/re3Dprinting/virtual_keyboard.git
 fi
 
 # Reset to a particular hash for kiauh so future commits do not break exp script
-cd $HOME/kiauh
-git reset --hard dd58229fee250ffdc7a08b3b0b245fa4ffda8ea0
+# cd $HOME/kiauh
+# git reset --hard dd58229fee250ffdc7a08b3b0b245fa4ffda8ea0
 
 cd $PWD
 ./install_klipper.exp
@@ -71,9 +71,7 @@ cd $HOME/moonraker/scripts
 ./set-policykit-rules.sh
 
 cd $HOME/klipper
-git remote set-url origin https://github.com/re3Dprinting/klipper.git
-git pull
-git reset --hard origin/master
+git clone --branch main https://github.com/Mitchell-Mashburn/klipper_config
 
 cd $HOME/moonraker
 git remote set-url origin https://github.com/re3Dprinting/moonraker.git
@@ -94,7 +92,7 @@ pip3 install GitPython
 #Set up usbmount service
 bash $PWD/usb/setup-usbmount.sh
 
-#Use saved xscreensaver config to point to screensaver image
+#Old screensaver 
 cp $PWD/screensaver/.xscreensaver $HOME
 
 #Set up lightdm_watchman service
