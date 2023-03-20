@@ -34,7 +34,7 @@ grabVideoFrames:    False
 chooseRandomImages: True
 imageDirectory:	/home/pi/klipper_config/src/system_config/screensaver
 
-mode:		one
+mode:		off
 selected:	143
 
 textMode:	url

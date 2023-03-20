@@ -7,6 +7,11 @@ This CustomPiOS is a Raspbian image that displays a chromium webpage in full scr
 
 This repository is used to install additional OS dependencies and repositories to install the Klipper software stack ontop of FullPageOS.
 
+
+## Easy Install From Release Image
+
+Download the latest release package in releases and follow the instructions in the attached pdf. 
+
 ## Installation
 
 1. Flash a SD card with FullPageOS using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/) (Other specific purpose OS)
