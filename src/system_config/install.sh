@@ -71,7 +71,7 @@ cd $HOME/moonraker/scripts
 ./set-policykit-rules.sh
 
 cd $HOME/klipper
-git clone --branch main https://github.com/Mitchell-Mashburn/klipper_config
+git clone --branch main https://github.com/re3Dprinting/klipper_config
 
 cd $HOME/moonraker
 git remote set-url origin https://github.com/re3Dprinting/moonraker.git
