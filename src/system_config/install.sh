@@ -74,7 +74,7 @@ cd $HOME/klipper
 git clone --branch main https://github.com/re3Dprinting/klipper_config
 
 cd $HOME/moonraker
-git remote set-url origin https://github.com/re3Dprinting/moonraker.git
+git remote set-url origin https://github.com/Arksine/moonraker
 git pull
 git reset --hard origin/master
 
