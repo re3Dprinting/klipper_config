@@ -97,40 +97,40 @@ Below is the guide on creating a customized image of the OS to flash as bootable
 
 ### 1. Shrinking partion on Raspberry Pi
 
--Put the SD you want to copy into a card reader and connect to a usb port on the pi.
--Use a standard raspbian OS on a different SD and boot into it.
--Install gparted on the raspberry pi 
+1. Put the SD you want to copy into a card reader and connect to a usb port on the pi.
+2. Use a standard raspbian OS on a different SD and boot into it.
+3. Install gparted on the raspberry pi 
 ```sudo apt-get install gparted -y```
--Launch gparted from the raspbian OS GUI, in system tools.
--Select the external SD from the pull down menu in the upper right corner.
--Unmount the rootfs partition if it is mounted (a key icon next to it) by right clicking it and selecting unmount. If it is grayed out, then it is not mounted.
--Right click rootfs and select resize/move.
--Select the new size for the partition. Resize to atleast the minimum or slightly larger.
--Click the green check mark at the top and click apply to proceed.
--Shutdown the pi.
--Now insert the SD you want to copy in to boot from. 
+4. Launch gparted from the raspbian OS GUI, in system tools.
+5. Select the external SD from the pull down menu in the upper right corner.
+6. Unmount the rootfs partition if it is mounted (a key icon next to it) by right clicking it and selecting unmount. If it is grayed out, then it is not mounted.
+7. Right click rootfs and select resize/move.
+8. Select the new size for the partition. Resize to atleast the minimum or slightly larger.
+9. Click the green check mark at the top and click apply to proceed.
+10. Shutdown the pi.
+11. Now insert the SD you want to copy in to boot from. 
 
 ### 2. Creating the Disk Image
 
--Have a formatted USB or similiar media to copy the image onto and insert into the pi.
--Check the mount point of your USB by running 
+12. Have a formatted USB or similiar media to copy the image onto and insert into the pi.
+13. Check the mount point of your USB by running 
 ```lsblk```
--You should see something like sda1 with a mountpoint on /media/pi/usb.
--If you see that there is no mountpoint try rebooting with the USB connected and check again.
--If there is still no mountpoint, then mount it manually by running 
+14. You should see something like sda1 with a mountpoint on /media/pi/usb.
+15. If you see that there is no mountpoint try rebooting with the USB connected and check again.
+16. If there is still no mountpoint, then mount it manually by running 
 ```sudo mkdir /dev/myusb``` to create a directory then ```sudo mount /dev/sda1 /dev/myusb``` to mount it.
--Using dd, copy all the data to an img file similiar to this: 
+17. Using dd, copy all the data to an img file similiar to this: 
 ```sudo dd if=/dev/mmcblk0 of=[mount point]/copy.img bs=1M count=6500 status=progress```
--bs=1M means using megabytes and count=6500 * 1M = 6.5 GB of data it will copy. It's always good to copy more data that you use by a few hundred megabytes.
+18. bs=1M means using megabytes and count=6500 * 1M = 6.5 GB of data it will copy. It's always good to copy more data that you use by a few hundred megabytes.
 
 ### 3. Compressing the image 
 
--Install pishrink.sh and copy it to the /usr/local/bin by running:
-```wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh```
-```sudo chmod +x pishrink.sh```
-```sudo mv pishrink.sh /usr/local/bin```
--Navigate to the USB drives root directory
+19. Install pishrink.sh and copy it to the /usr/local/bin by running:
+1. ```wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh```
+2. ```sudo chmod +x pishrink.sh```
+3. ```sudo mv pishrink.sh /usr/local/bin```
+20. Navigate to the USB drives root directory
 ```cd /dev/myusb```
--Use pishrink with the -z parameter to compress your image
+21. Use pishrink with the -z parameter to compress your image
 ```sudo pishrink.sh -z copy.img```
 
