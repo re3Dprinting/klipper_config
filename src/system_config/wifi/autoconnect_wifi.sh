@@ -33,7 +33,7 @@ function check_connection {
 }
 
 WPA_CONF_PATH="/etc/wpa_supplicant/wpa_supplicant.conf"
-CONFIG_PATH="/home/pi/klipper_config/wifi_setup.conf"
+CONFIG_PATH="/home/pi/printer_data/config/wifi_setup.conf"
 
 while true;
 do
@@ -41,7 +41,7 @@ do
 
     echo "Not connected to Internet!"
     ./scan_wifi.sh
-    echo "Checking if wpa_supplicant.conf can be updated with klipper_conf/wifi_setup.conf"
+    echo "Checking if wpa_supplicant.conf can be updated with printer_data/config/wifi_setup.conf"
     # Grab the wifi ssid and password from wpa_supplicant
     grep_string $WPA_CONF_PATH "ssid=" "exit"
     grep_string $WPA_CONF_PATH "psk=" "exit"
