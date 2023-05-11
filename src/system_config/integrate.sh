@@ -16,6 +16,8 @@ PWD="$(CD "$(dirname "$0")" && pwd)"
 HOME=~PWD/../../..
 
 cd $HOME
+mkdir $HOME/config_backup/
+cp -a $HOME/printer_data/config/. $HOME/config_backup/
 mv $HOME/printer_data/config/standalone.cfg $HOME/standaloneBKP.cfg
 rm -rf $HOME/printer_data/config
 cp -a $HOME/klipper_config/. $HOME/printer_data/config
