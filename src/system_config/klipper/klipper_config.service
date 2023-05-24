@@ -4,7 +4,7 @@ Description=Script that calls ~/klipper_config/src/reload.py to reset mainsail U
 [Service]
 User=pi
 WorkingDirectory=/home/pi/printer_data/config/src
-ExecStart=/bin/sh -c '/usr/bin/python3 /home/pi/klipper_config/src/reload.py > /home/pi/klipper_logs/klipper_config.log 2>&1'
+ExecStart=/bin/sh -c '/usr/bin/python3 /home/pi/printer_data/config/src/reload.py > /home/pi/klipper_logs/klipper_config.log 2>&1'
 
 [Install]
 WantedBy=multi-user.target
