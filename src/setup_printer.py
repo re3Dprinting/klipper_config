@@ -84,6 +84,9 @@ def common_setup_printer(deposition_type_path, board, platform):
     add_template_file(COMMON_PATH / "macros.cfg", KLIPPER_CONFIG_PATH / "macros.cfg")
     add_template_file(COMMON_PATH / "wifi_setup.conf.tmpl", KLIPPER_CONFIG_PATH / "wifi_setup.conf")
     add_template_file(COMMON_PATH / "moonraker.conf.tmpl", KLIPPER_CONFIG_PATH / "moonraker.conf", True)
+    add_template_file(COMMON_PATH / "crowsnest.conf.tmpl", KLIPPER_CONFIG_PATH / "crowsnest.conf", True)
+    add_template_file(COMMON_PATH / "timelapse.cfg.tmpl", KLIPPER_CONFIG_PATH / "timelapse.cfg", True)
+    add_template_file(COMMON_PATH / "shell_command.cfg.tmpl", KLIPPER_CONFIG_PATH / "shell_command.cfg", True)
 
 def setup_fff_printer(printer_config, board, platform):
     custom_path = FFF_PATH / "custom"
