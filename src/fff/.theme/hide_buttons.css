@@ -35,4 +35,4 @@
 /* #page-container > div > div > div.col-12.col-md-6.pb-0.pb-md-3.col > div > div.v-card.v-sheet.theme--dark.panel.machine-configfiles-panel.mb-3.mb-md-6 > div > div:nth-child(1) > div > div.col.col-lg-auto.pl-lg-0.text-right.col > button:nth-child(4){ display: none; } */
 
 /* Hide 3D Visualization Menu Button */
-#app > div.v-application--wrap > nav > div.v-navigation-drawer__content > div > div.os-padding > div > div > div > div > div:nth-child(5) { display: none !important; } 
+/* #app > div.v-application--wrap > nav > div.v-navigation-drawer__content > div > div.os-padding > div > div > div > div > div:nth-child(5) { display: none !important; } */ 
