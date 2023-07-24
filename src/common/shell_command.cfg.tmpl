@@ -5,3 +5,85 @@ verbose: True
 [gcode_macro INTEGRATE_UPDATE]
 gcode:
     RUN_SHELL_COMMAND CMD=integrate_update
+
+[gcode_shell_command change_hostname]
+command: sudo sh /home/pi/printer_data/config/src/system_config/change_hostname.sh
+timeout: 30.
+verbose: True
+[gcode_macro CHANGE_HOSTNAME]
+gcode:
+    {% set set_hostname = params.NEW_HOSTNAME|string %}
+    RUN_SHELL_COMMAND CMD=change_hostname PARAMS={set_hostname}
+
+[gcode_shell_command flash_firmware]
+command: sudo sh /home/pi/printer_data/config/src/system_config/flash_firmware.sh
+timeout: 60.
+verbose: True
+[gcode_macro FLASH_FIRMWARE]
+gcode:
+    RUN_SHELL_COMMAND CMD=flash_firmware
+
+[gcode_shell_command mac_network]
+command: sudo sh /home/pi/printer_data/config/src/system_config/mac_network.sh
+timeout: 5.
+verbose: True
+[gcode_macro MAC_NETWORK_ADDRESS]
+gcode:
+    RUN_SHELL_COMMAND CMD=mac_network
+
+[gcode_shell_command change_password]
+command: sudo sh /home/pi/printer_data/config/src/system_config/change_password.sh
+timeout: 5.
+verbose: True
+[gcode_macro CHANGE_PASSWORD]
+gcode:
+    {% set new_password = params.NEW_PASSWORD|string %}
+    RUN_SHELL_COMMAND CMD=change_password PARAMS={new_password}
+
+
+
+[delayed_gcode master_wait]
+gcode:
+    M117 Waiting...
+
+
+[gcode_shell_command change_master]
+command: sudo sh /home/pi/printer_data/config/src/system_config/change_master.sh
+timeout: 30.
+verbose: True
+[gcode_shell_command change_extrusion]
+command: sudo sh /home/pi/printer_data/config/src/system_config/change_extrusion.sh
+timeout: 30.
+verbose: True
+[gcode_shell_command change_platform]
+command: sudo sh /home/pi/printer_data/config/src/system_config/change_platform.sh
+timeout: 30.
+verbose: True
+[gcode_shell_command change_board]
+command: sudo sh /home/pi/printer_data/config/src/system_config/change_board.sh
+timeout: 30.
+verbose: True
+[gcode_shell_command change_crammer]
+command: sudo sh /home/pi/printer_data/config/src/system_config/change_crammer.sh
+timeout: 30.
+verbose: True
+[gcode_shell_command change_bed]
+command: sudo sh /home/pi/printer_data/config/src/system_config/change_bed.sh
+timeout: 30.
+verbose: True
+[gcode_macro CHANGE_CONFIGURATION]
+gcode:
+    {% set extrusion = params.FFF_FGF|string %}
+    {% set platform = params.REGULAR_XLT_TERABOT|string %}
+    {% set board = params.ARCHIMAJOR_AZTEEG|string %}
+    {% set crammer = params.CRAMMER_TRUE_FALSE|string %}
+    {% set bed = params.HEATED_BED_TRUE_FALSE|string %}
+    RUN_SHELL_COMMAND CMD=change_extrusion PARAMS={extrusion}
+    UPDATE_DELAYED_GCODE ID=master_wait DURATION=5
+    RUN_SHELL_COMMAND CMD=change_platform PARAMS={platform}
+    UPDATE_DELAYED_GCODE ID=master_wait DURATION=5
+    RUN_SHELL_COMMAND CMD=change_board PARAMS={board}
+    UPDATE_DELAYED_GCODE ID=master_wait DURATION=5
+    RUN_SHELL_COMMAND CMD=change_crammer PARAMS={crammer}
+    UPDATE_DELAYED_GCODE ID=master_wait DURATION=5
+    RUN_SHELL_COMMAND CMD=change_bed PARAMS={bed}
