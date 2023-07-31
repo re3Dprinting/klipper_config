@@ -1,4 +1,4 @@
-# klipper_config
+# klipper_config 
 Klipper Configuration files for Gigabot 3D-Printers
 
 # Gigabot Touchscreen
@@ -134,3 +134,5 @@ Below is the guide on creating a customized image of the OS to flash as bootable
 21. Use pishrink with the -z parameter to compress your image
 ```sudo pishrink.sh -z copy.img```
 
+
+Enjoy.
