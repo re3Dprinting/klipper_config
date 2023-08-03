@@ -135,4 +135,4 @@ Below is the guide on creating a customized image of the OS to flash as bootable
 ```sudo pishrink.sh -z copy.img```
 
 
-Happy Printing!
+Happy Printing! :)
