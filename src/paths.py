@@ -1,7 +1,7 @@
 from pathlib import Path
 
 HOME_PATH = Path(__file__).parent.resolve().parent.parent
-KLIPPER_CONFIG_PATH = HOME_PATH / "klipper_config"
+KLIPPER_CONFIG_PATH = HOME_PATH / "config"
 KLIPPER_PATH = HOME_PATH / "klipper"
 MOONRAKER_PATH = HOME_PATH / "moonraker"
 VIRTUAL_KEYBOARD_PATH = HOME_PATH / "virtual_keyboard"
