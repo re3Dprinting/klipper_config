@@ -69,3 +69,5 @@ start_x=1
 disable_splash=1
 dtoverlay=vc4-kms-v3d
 dtoverlay=pi3-miniuart-bt
+
+arm_64bit=0
