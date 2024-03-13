@@ -120,3 +120,25 @@
 { display:none; }
 #page-container > div > div > div:nth-child(2) > div.v-card.v-sheet.theme--dark.panel.temperature-panel.mb-3.mb-md-6 > div > div > div > div > div > table > tbody > tr:nth-child(2) > td.name:after
 { content: "Right Heater"; }
+
+
+/* Change location of emergency stop and force text to show on tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+    #app > div.v-application--wrap > div:nth-child(2) > header > div > button > span > span.d-none.d-md-inline {
+        display: inline !important; /* Force display */
+        margin-right: 100px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    #app > div.v-application--wrap > div:nth-child(2) > header > div > button.button-min-width-auto.px-3.emergency-button.v-btn.v-btn--text.v-btn--tile.theme--dark.v-size--default.error--text {
+        margin-right: 100px; /* Adjust this value as needed */
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    #app > div.v-application--wrap > div:nth-child(2) > header > div > button.button-min-width-auto.px-3.emergency-button.v-btn.v-btn--text.v-btn--tile.theme--dark.v-size--default.error--text,
+    #app > div.v-application--wrap > div:nth-child(2) > header > div > button.button-min-width-auto.px-3.emergency-button.v-btn.v-btn--icon.v-btn--round.v-btn--tile.theme--dark.v-size--default.error--text {
+        margin-right: 250px; /* Adjust this value as needed */
+    }
+}
