@@ -110,3 +110,13 @@
 .v-btn-toggle>.v-btn.v-btn {
 	border-radius: 8px;
 }
+
+#page-container > div > div > div:nth-child(2) > div.v-card.v-sheet.theme--dark.panel.temperature-panel.mb-3.mb-md-6 > div > div > div > div > div > table > tbody > tr:nth-child(1) > td.name > span
+{ display:none; }
+#page-container > div > div > div:nth-child(2) > div.v-card.v-sheet.theme--dark.panel.temperature-panel.mb-3.mb-md-6 > div > div > div > div > div > table > tbody > tr:nth-child(1) > td.name:after
+{ content: "Left Heater"; }
+
+#page-container > div > div > div:nth-child(2) > div.v-card.v-sheet.theme--dark.panel.temperature-panel.mb-3.mb-md-6 > div > div > div > div > div > table > tbody > tr:nth-child(2) > td.name > span
+{ display:none; }
+#page-container > div > div > div:nth-child(2) > div.v-card.v-sheet.theme--dark.panel.temperature-panel.mb-3.mb-md-6 > div > div > div > div > div > table > tbody > tr:nth-child(2) > td.name:after
+{ content: "Right Heater"; }
