@@ -21,7 +21,7 @@ ls /var/run/usbmount | while read name; do
 done
 
 ls /home/pi/gcode_files | while read name; do
-    if test "`readlink \"/home/pi/gcode_files/$name\" || :`" = "$UM_MOUNTPOINT"; then
+    if test "`readlink \"/home/pi/printer_data/gcodes/$name\" || :`" = "$UM_MOUNTPOINT"; then
 	rm -f "/home/pi/gcode_files/$name"
 	break
     fi

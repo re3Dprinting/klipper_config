@@ -51,7 +51,7 @@ fi
 echo "label is $label" >> $out
 echo "UM_MOUNTPOINT is <$UM_MOUNTPOINT>" >> $out
 
-linkname="/home/pi/gcode_files/$label"
+linkname="/home/pi/printer_data/gcodes/$label"
 
 echo "linkname is <$linkname>" >> $out
 echo ln -sf "$UM_MOUNTPOINT" "$linkname" >> $out

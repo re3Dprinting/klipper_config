@@ -27,4 +27,4 @@ cp $PWD/systemd-udevd.service /etc/systemd/system/systemd-udevd.service.d/00-usb
 
 chmod 644 /lib/systemd/system/systemd-udevd.service
 
-# We are going to mount the usb to the ~/gcode_files file of klipper.
+# We are going to mount the usb to the ~/printer_data/gcodes file of klipper.
