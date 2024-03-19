@@ -41,3 +41,4 @@ sleep 1
 export DISPLAY=:0
 export XAUTHORITY=/home/pi/.Xauthority
 xdotool key F5
+reboot
