@@ -4,7 +4,7 @@
 home=/home/pi
 config=$home/printer_data/config
 sys_path=$config/src/system_config
-config_files=("standalone.cfg" "crowsnest.conf" "timelapse.cfg" "src/paths.py" "shell_command.cfg" ".master.cfg")
+config_files=("standalone.cfg" "crowsnest.conf" "timelapse.cfg" ".master.cfg")
 
 # Update and upgrade system
 sudo apt update
@@ -35,7 +35,7 @@ for file in "${config_files[@]}"; do
     mv $home/${file}TMP $config/$file
     chown pi:pi $config/$file
 done
-
+bash $sys_path/shell_commands/shell_setup.sh
 # Refresh display
 sleep 1
 export DISPLAY=:0
