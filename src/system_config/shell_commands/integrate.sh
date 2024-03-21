@@ -4,7 +4,7 @@
 home=/home/pi
 config=$home/printer_data/config
 sys_path=$config/src/system_config
-config_files=("standalone.cfg" "crowsnest.conf" "timelapse.cfg" ".master.cfg" "wifi_setup.conf")
+config_files=("standalone.cfg" "crowsnest.conf" "timelapse.cfg" ".master.cfg" "wifi_setup.conf" "macros.cfg")
 
 # Update and upgrade system
 sudo apt update
