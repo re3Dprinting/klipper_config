@@ -1,4 +1,4 @@
-# klipper_config 
+# ~/printer_data/config
 Klipper Configuration files for the NASA Ignite printer
 
 # Gigabot Touchscreen
