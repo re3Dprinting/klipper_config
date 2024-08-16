@@ -1,5 +1,5 @@
 # klipper_config 
-Klipper Configuration files for Gigabot 3D-Printers
+Klipper Configuration files for the NASA Ignite printer
 
 # Gigabot Touchscreen
 The Gigabot Touchscreen is built ontop of FullPageOS
