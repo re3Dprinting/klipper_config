@@ -103,3 +103,11 @@ def setup_fgf_printer(printer_config, board, platform):
     heater_bed_enabled = validate_and_return_config_param(field="heater_bed_enabled", config=printer_config, valid_selections=["true", "false"], default="true")
     if heater_bed_enabled == "true":
         add_template_file( custom_path / "fgf_heater_bed.cfg", OUTPUT_PATH / "fgf_heater_bed.cfg", False)
+
+    mesh_compensation_enabled = validate_and_return_config_param(field="mesh_compensation_enabled", config=printer_config, valid_selections=["true", "false"], default="true")
+    if mesh_compensation_enabled == "true":
+        add_template_file( custom_path / "fff_mesh.cfg", OUTPUT_PATH / "fff_mesh.cfg", False)
+        add_template_file( custom_path / "fff_mesh_z.cfg", OUTPUT_PATH / "fff_mesh_z.cfg", False)
+    else:
+        add_template_file( custom_path / "fff_standard_z.cfg", OUTPUT_PATH / "fff_standard_z.cfg", False)
+
