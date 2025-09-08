@@ -122,23 +122,24 @@
 { content: "Right Heater"; }
 
 
-/* Change location of emergency stop and force text to show on tablets */
+/* Change location of emergency stop and force text to show on tablets
 @media (min-width: 768px) and (max-width: 1024px) {
     #app > div.v-application--wrap > div:nth-child(2) > header > div > button > span > span.d-none.d-md-inline {
-        display: inline !important; /* Force display */
+        display: inline !important; /* Force display
         margin-right: 100px;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
     #app > div.v-application--wrap > div:nth-child(2) > header > div > button.button-min-width-auto.px-3.emergency-button.v-btn.v-btn--text.v-btn--tile.theme--dark.v-size--default.error--text {
-        margin-right: 100px; /* Adjust this value as needed */
+        margin-right: 100px; /* Adjust this value as needed 
     }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
     #app > div.v-application--wrap > div:nth-child(2) > header > div > button.button-min-width-auto.px-3.emergency-button.v-btn.v-btn--text.v-btn--tile.theme--dark.v-size--default.error--text,
     #app > div.v-application--wrap > div:nth-child(2) > header > div > button.button-min-width-auto.px-3.emergency-button.v-btn.v-btn--icon.v-btn--round.v-btn--tile.theme--dark.v-size--default.error--text {
-        margin-right: 250px; /* Adjust this value as needed */
+        margin-right: 250px; /* Adjust this value as needed 
     }
 }
+*/
