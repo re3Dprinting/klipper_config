@@ -96,6 +96,14 @@ def setup_fff_printer(printer_config, board, platform):
     if mesh_compensation_enabled == "true":
         add_template_file( custom_path / "fff_mesh.cfg", OUTPUT_PATH / "fff_mesh.cfg", False)
         add_template_file( custom_path / "fff_mesh_z.cfg", OUTPUT_PATH / "fff_mesh_z.cfg", False)
+        # Add platform-specific mesh include depending on selected platform
+        # If platform is 'regular' and mesh compensation enabled -> include mesh_regular.cfg
+        # If platform is 'xlt' and mesh compensation enabled -> include mesh_xlt.cfg
+        platform_mesh_file = f"mesh_{platform}.cfg"
+        platform_mesh_template = FFF_PATH / "platform_specific" / platform_mesh_file
+        # Only add the platform mesh file if it exists in the platform_specific folder
+        if is_valid_path(platform_mesh_template):
+            add_template_file(platform_mesh_template, OUTPUT_PATH / platform_mesh_file, False)
     else:
         add_template_file( custom_path / "fff_standard_z.cfg", OUTPUT_PATH / "fff_standard_z.cfg", False)
 
