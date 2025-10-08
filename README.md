@@ -1,5 +1,6 @@
-# klipper_config 
-Klipper Configuration files for Gigabot 3D-Printers
+# This repository will soon be depreciated.
+
+The project will be moved to [re:3D Klipper OS](https://github.com/re3Dprinting/re3D-Klipper-OS). Check frequently to make sure you're up to date. 
 
 # Gigabot Touchscreen
 The Gigabot Touchscreen is built ontop of FullPageOS
